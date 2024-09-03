@@ -43,8 +43,7 @@
       <li
         *ngFor="let categoria of categorie"
         (click)="selezionaCategoria(categoria)"
-        [class.active]="categoria === categoriaSelezionata"
-      >
+        [class.active]="categoria === categoriaSelezionata">
         {{ categoria.nome }}
       </li>
     </ul>

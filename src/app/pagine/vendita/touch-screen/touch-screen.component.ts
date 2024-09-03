@@ -11,7 +11,6 @@ interface Categoria {
   styleUrls: ['./touch-screen.component.css'],
 })
 export class TouchScreenComponent implements OnInit {
-  
   currentTime: string = '';
   currentDate: string = '';
   categoriaSelezionata: Categoria | null = null;
@@ -21,6 +20,10 @@ export class TouchScreenComponent implements OnInit {
   ngOnInit(): void {
     this.setCurrentDate();
     this.setCurrentTime();
+    const categoriaPredefinita = this.categorie.find(cat => cat.nome === 'Espositori');
+    if (categoriaPredefinita) {
+      this.selezionaCategoria(categoriaPredefinita);
+    }
   }
 
   setCurrentDate(): void {
@@ -55,13 +58,30 @@ export class TouchScreenComponent implements OnInit {
   }
 
   resetInput(): void {
-    const inputElement = document.getElementById('inputCodice') as HTMLInputElement;
+    const inputElement = document.getElementById(
+      'inputCodice'
+    ) as HTMLInputElement;
     if (inputElement) {
       inputElement.value = ''; // Reset the value of the input
     }
   }
   categorie: Categoria[] = [
-
+    {
+      nome: 'Espositori',
+      articoli: [
+        { nome: 'Lavandino in Ferro', tipologia: 'Armi' },
+        { nome: 'Poppice', tipologia: 'Lavandini' },
+        { nome: 'Specchio mimmo', tipologia: 'Specchi' },
+      ],
+    },
+    {
+      nome: 'Espositori',
+      articoli: [
+        { nome: 'Lavandino in Ferro', tipologia: 'Armi' },
+        { nome: 'Poppice', tipologia: 'Lavandini' },
+        { nome: 'Specchio mimmo', tipologia: 'Specchi' },
+      ],
+    },
     {
       nome: 'Espositori',
       articoli: [
@@ -151,5 +171,4 @@ export class TouchScreenComponent implements OnInit {
       ],
     },
   ];
-
 }

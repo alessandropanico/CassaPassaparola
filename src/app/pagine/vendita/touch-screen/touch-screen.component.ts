@@ -28,4 +28,12 @@ export class TouchScreenComponent implements OnInit {
     const minutes = now.getMinutes().toString().padStart(2, '0');
     this.currentTime = `${hours}:${minutes}`;
   }
+
+
+  resetInput():void {
+    let codice =document.getElementById("inputCodice") as HTMLInputElement
+    if (codice) {
+      codice.value = ''; // Reset the value of the input
+    }
+  }
 }

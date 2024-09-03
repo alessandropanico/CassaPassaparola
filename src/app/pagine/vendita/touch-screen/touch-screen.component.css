@@ -20,10 +20,12 @@
   height: 40px;
   margin-left: 0.5vw;
   margin-top: -0.6vh;
+  cursor: pointer;
 }
 
 .fa-solid {
   font-size: 2vw;
+
 }
 
 .sezione1 {

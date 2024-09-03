@@ -6,17 +6,23 @@
 
 <!--1-->
 <section class="sezione1">
-
   <div class="contInput">
-    <input class="form-control">
+    <input class="form-control" value="Numero" readonly>
+    <span class="spazio"></span>
+    <input class="form-control" type="number" value="1">
+
+    <span class="spazio"></span>
+
+    <input class="form-control" value="Data" readonly>
+    <span class="spazio"></span>
+    <input class="form-control formPers" type="date" [value]="currentDate">
+
+    <span class="spazio"></span>
+
+    <input class="form-control" value="Orario" readonly>
+    <span class="spazio"></span>
+    <input class="form-control formPers" type="time" [value]="currentTime">
   </div>
-
 </section>
-
-
-
-
-
-
 
 <app-footer></app-footer>

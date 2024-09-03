@@ -14,9 +14,19 @@
 
 .contInput{
   padding: 1vw;
+  display: flex;
+}
+
+.spazio{
+  margin-left: 0.5vw;
 }
 
 .form-control{
-  width: 150px;
+  width: 10vw;
+  height: 4vh;
   border: solid 1px black;
+}
+
+.formPers{
+  font-weight: bold;
 }

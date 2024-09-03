@@ -15,13 +15,7 @@
   margin-top: 10vh;
 }
 
-.contBott {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.buttonHome {
+.buttonPers {
   width: 20vw;
   height: auto;
   padding: 1vh;
@@ -70,30 +64,22 @@
 @media screen and (max-width: 600px) {
   .titolo {
     font-size: 8vw;
-    /* Font più grande per visibilità su schermi piccoli */
   }
 
   .buttonHome {
     width: 90vw;
-    /* Pulsanti più larghi per adattarsi allo schermo mobile */
     font-size: 4vw;
-    /* Testo più grande per leggibilità su mobile */
     padding: 3vh;
-    /* Aumenta il padding per una maggiore area cliccabile */
     border-radius: 5vw;
-    /* Angoli più arrotondati per un design più soft su mobile */
     margin-left: 0;
-    /* Rimuove il margine laterale per centratura */
   }
 
   .fa-solid {
     font-size: 4vw;
-    /* Icone più grandi per visibilità */
   }
 
   .sectionButton {
     margin-top: 5vh;
-    /* Riduce il margine superiore per dispositivi mobili */
   }
 
 

@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './pagine/home/home.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { VenditaComponent } from './pagine/vendita/vendita/vendita.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
+    VenditaComponent
   ],
   imports: [
     BrowserModule,

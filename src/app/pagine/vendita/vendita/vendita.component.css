@@ -1,0 +1,29 @@
+/* Stili generali (desktop) */
+.intest {
+  background-color: #EF8000;
+  width: 100%;
+  padding: 2vh;
+}
+
+.titolo {
+  color: white;
+  font-weight: bolder;
+  font-size: 4vw;
+}
+
+
+.buttonPers {
+  width: 20vw;
+  height: auto;
+  padding: 1vh;
+  border-radius: 2vw;
+  border: none;
+  background-color: #EF8000;
+  color: white;
+  margin-left: 2vw;
+  margin-bottom: 3vh;
+  font-size: 2vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

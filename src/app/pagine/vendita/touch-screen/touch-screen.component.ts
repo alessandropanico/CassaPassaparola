@@ -65,7 +65,7 @@ export class TouchScreenComponent implements OnInit {
       inputElement.value = ''; // Reset the value of the input
     }
   }
-  
+
   categorie: Categoria[] = [
     {
       nome: 'Espositori',
@@ -89,6 +89,14 @@ export class TouchScreenComponent implements OnInit {
         { nome: 'Lavandino in Ferro', tipologia: 'Armi' },
         { nome: 'Poppice', tipologia: 'Lavandini' },
         { nome: 'Specchio mimmo', tipologia: 'Specchi' },
+      ],
+    },
+    {
+      nome: 'Ginnanzio',
+      articoli: [
+        { nome: 'Lavandino in Ferro2', tipologia: 'Giochi' },
+        { nome: 'La nasita di Alberto', tipologia: 'Giochi' },
+        { nome: 'Specchio Grande', tipologia: 'Specchi' },
       ],
     },
     {

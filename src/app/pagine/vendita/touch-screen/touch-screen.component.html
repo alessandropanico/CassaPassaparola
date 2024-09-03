@@ -4,40 +4,69 @@
   </div>
 </div>
 
-<!--1-->
+<!-- Sezione esistente -->
 <section class="sezione1">
   <div class="contInput">
-    <input class="form-control myForm" value="Numero" readonly>
+    <input class="form-control myForm" value="Numero" readonly />
     <span class="spazio"></span>
-    <input class="form-control myForm" type="number" value="1">
+    <input class="form-control myForm" type="number" value="1" />
 
     <span class="spazio"></span>
 
-    <input class="form-control myForm" value="Data" readonly>
+    <input class="form-control myForm" value="Data" readonly />
     <span class="spazio"></span>
-    <input class="form-control formPers2" type="date" [value]="currentDate">
+    <input class="form-control formPers2" type="date" [value]="currentDate" />
 
     <span class="spazio"></span>
 
-    <input class="form-control myForm" value="Orario" readonly>
+    <input class="form-control myForm" value="Orario" readonly />
     <span class="spazio"></span>
-    <input class="form-control formPers myForm" type="time" [value]="currentTime">
+    <input class="form-control formPers myForm" type="time" [value]="currentTime" />
 
-    <div class="contInput2 ">
-      <input class="form-control formPers2" value="Codice Lotteria" readonly>
+    <div class="contInput2">
+      <input class="form-control formPers2" value="Codice Lotteria" readonly />
       <span class="spazio"></span>
-      <input class="form-control myForm" type="number" value="1" id="inputCodice">
+      <input class="form-control myForm" type="number" value="1" id="inputCodice" />
       <div class="bordoX">
-      <i class="fa-solid fa-x"></i>
+        <i class="fa-solid fa-x"></i>
+      </div>
     </div>
-    </div>
-
   </div>
-
-
 </section>
 
+<!-- Nuova Sezione con Griglia e Pannello Laterale -->
+<div class="layout-container">
+  <!-- Pannello delle Categorie a Sinistra -->
+  <div class="sidebar">
+    <h3>Categorie</h3>
+    <ul>
+      <li
+        *ngFor="let categoria of categorie"
+        (click)="selezionaCategoria(categoria)"
+        [class.active]="categoria === categoriaSelezionata"
+      >
+        {{ categoria.nome }}
+      </li>
+    </ul>
+  </div>
 
-
+  <!-- Griglia Centrale -->
+  <div class="grid">
+    <!-- Intestazioni delle Colonne -->
+    <div class="header-row">
+      <div *ngFor="let tipologia of tipologie" class="header-cell">
+        {{ tipologia }}
+      </div>
+    </div>
+    <!-- Articoli Raggruppati per Tipologia -->
+    <div class="grid-content">
+      <div class="grid-column" *ngFor="let tipologia of tipologie">
+        <div class="grid-item" *ngFor="let articolo of articoliFiltrati[tipologia]">
+          {{ articolo }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <app-footer></app-footer>

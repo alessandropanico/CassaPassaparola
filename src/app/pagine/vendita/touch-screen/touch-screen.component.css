@@ -9,39 +9,62 @@
   font-size: 2vw;
 }
 
-.sezione1{
+.bordoX {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-left: 0.5vw;
+  margin-top: -0.6vh;
 }
 
-.contInput{
+.fa-solid {
+  font-size: 2vw;
+}
+
+.sezione1 {
+  background-color: beige;
+  border: solid 1px;
+  border: none;
+  width: 100%;
+}
+
+.contInput {
   padding: 1vw;
   display: flex;
 }
 
-.spazio{
+.contInput2 {
+  display: flex;
+  position: absolute;
+  right: 0;
+  margin-right: 1vw;
+}
+
+
+.spazio {
   margin-left: 0.5vw;
 }
 
 
-.myForm{
+.myForm {
   width: 7vw;
   height: 4vh;
   border: solid 1px black;
 }
 
-.formPers2{
+.formPers2 {
   font-weight: bold;
   width: 10vw;
   height: 4vh;
   border: solid 1px black;
 }
 
-.formPers{
+.formPers {
   font-weight: bold;
-
-}
-
-
-.sezioneLotteria{
-  padding: 1vw;
 
 }

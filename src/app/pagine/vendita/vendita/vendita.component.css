@@ -59,3 +59,9 @@
   align-items: center;
   justify-content: center;
 }
+
+.buttonPers:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px #ccc;
+  background-color: #D97000;
+}

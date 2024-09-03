@@ -30,6 +30,12 @@
   justify-content: center;
 }
 
+.buttonPers:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px #ccc;
+  background-color: #D97000;
+}
+
 .fa-solid {
   font-size: 2.4vw;
   margin-right: 1vw;

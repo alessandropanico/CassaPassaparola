@@ -21,7 +21,15 @@
   margin-left: 0.5vw;
 }
 
-.form-control{
+
+.myForm{
+  width: 7vw;
+  height: 4vh;
+  border: solid 1px black;
+}
+
+.formPers2{
+  font-weight: bold;
   width: 10vw;
   height: 4vh;
   border: solid 1px black;
@@ -29,4 +37,11 @@
 
 .formPers{
   font-weight: bold;
+
+}
+
+
+.sezioneLotteria{
+  padding: 1vw;
+
 }

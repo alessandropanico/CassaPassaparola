@@ -70,3 +70,15 @@
   font-weight: bold;
 
 }
+
+
+.tipo {
+  position: fixed;
+  left: 0;
+  overflow-y: scroll; /* Cambiato da scroll a auto per mostrare la barra di scorrimento solo quando necessario */
+  background-color: rgb(77, 182, 126);
+  padding: 1vw;
+  display: flex; /* Aggiunto per fare in modo che flexbox funzioni correttamente */
+  flex-direction: column; /* Gli elementi figlio verranno disposti in una colonna */
+  height: 100%;
+}

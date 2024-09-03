@@ -65,6 +65,7 @@ export class TouchScreenComponent implements OnInit {
       inputElement.value = ''; // Reset the value of the input
     }
   }
+  
   categorie: Categoria[] = [
     {
       nome: 'Espositori',

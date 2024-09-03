@@ -1,0 +1,11 @@
+/* Stili generali (desktop) */
+.intest {
+  background-color: #EF8000;
+  width: 100%;
+}
+
+.titolo {
+  color: white;
+  font-weight: bolder;
+  font-size: 4vw;
+}

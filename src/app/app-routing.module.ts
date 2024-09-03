@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pagine/home/home.component';
 import { VenditaComponent } from './pagine/vendita/vendita/vendita.component';
+import { TouchScreenComponent } from './pagine/vendita/touch-screen/touch-screen.component';
 
 const routes: Routes = [
 
@@ -17,7 +18,9 @@ const routes: Routes = [
   path:'vendita',component:VenditaComponent
 },
 
-
+{
+  path:'touchscreen',component:TouchScreenComponent
+}
 
 
 ];

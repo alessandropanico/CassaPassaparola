@@ -7,13 +7,15 @@ import { RouterModule } from '@angular/router';
 import { HomeComponent } from './pagine/home/home.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { VenditaComponent } from './pagine/vendita/vendita/vendita.component';
+import { TouchScreenComponent } from './pagine/vendita/touch-screen/touch-screen.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     FooterComponent,
-    VenditaComponent
+    VenditaComponent,
+    TouchScreenComponent
   ],
   imports: [
     BrowserModule,

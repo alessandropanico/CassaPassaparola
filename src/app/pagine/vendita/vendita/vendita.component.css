@@ -2,13 +2,44 @@
 .intest {
   background-color: #EF8000;
   width: 100%;
-  padding: 2vh;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centra il contenitore flessibile */
 }
 
+.flex-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Spazio tra il titolo e la scritta */
+  width: 100%;
+  max-width: 90%; /* Limita la larghezza massima del contenitore */
+}
+
+/* Stile per il titolo al centro */
 .titolo {
   color: white;
   font-weight: bolder;
   font-size: 4vw;
+  text-align: center;
+  flex: 1; /* Permette di espandere per riempire lo spazio disponibile */
+}
+
+/* Stile per il testo all'estrema destra */
+.text-right {
+  color: white;
+  font-size: 2vw;
+  text-align: right;
+  white-space: nowrap; /* Impedisce alla scritta di andare a capo */
+}
+
+.sectionButton {
+  margin-top: 10vh;
+}
+
+.fa-solid {
+  font-size: 2.4vw;
+  margin-right: 1vw;
+  cursor:pointer;
 }
 
 

@@ -126,7 +126,8 @@
   flex: 1;
   text-align: center;
   padding: 0.471vw;
-  border:solid 0.052vw gray
+  border:solid 0.052vw gray;
+  cursor: pointer;
 }
 
 .grid-content {

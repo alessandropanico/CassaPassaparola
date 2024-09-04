@@ -108,16 +108,19 @@
   padding: 0.521vw;
   display: flex;
   flex-direction: column;
+  overflow-x: auto; /* Permette lo scroll orizzontale per l'intera griglia */
 }
 
 .header-row {
   display: flex;
   font-weight: bold;
   margin-bottom: 1.099vh;
+  overflow-x: auto; /* Permette lo scroll orizzontale per le intestazioni */
+  white-space: nowrap; /* Impedisce agli elementi di andare a capo */
 }
 
 .header-cell {
-  flex: 1;
+  flex: 1 0 auto; /* Consente alle celle di mantenere la loro larghezza e di scorrere orizzontalmente */
   text-align: center;
   padding: 0.471vw;
   border: solid 0.052vw gray;
@@ -137,10 +140,11 @@
 
 .grid-content {
   display: flex;
+  overflow-x: auto; /* Permette lo scroll orizzontale per le colonne degli articoli */
 }
 
 .grid-column {
-  flex: 1;
+  flex: 1 0 auto; /* Consente alle colonne di mantenere la loro larghezza e scorrere orizzontalmente */
   display: flex;
   flex-direction: column;
   gap: 0.471vw; /* Spazio tra gli articoli */

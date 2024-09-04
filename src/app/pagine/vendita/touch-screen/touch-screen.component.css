@@ -25,12 +25,10 @@
 
 .fa-solid {
   font-size: 2vw;
-
 }
 
 .sezione1 {
   background-color: beige;
-  border: solid 1px;
   border: none;
   width: 100%;
 }
@@ -47,11 +45,9 @@
   margin-right: 1vw;
 }
 
-
 .spazio {
   margin-left: 0.5vw;
 }
-
 
 .myForm {
   width: 7vw;
@@ -68,7 +64,6 @@
 
 .formPers {
   font-weight: bold;
-
 }
 
 .layout-container {
@@ -82,7 +77,6 @@
   padding: 0.521vw;
   background-color: #f2f2f2;
   border-right: 0.104vw solid #ddd;
-
 }
 
 .sidebar h3 {
@@ -126,8 +120,19 @@
   flex: 1;
   text-align: center;
   padding: 0.471vw;
-  border:solid 0.052vw gray;
+  border: solid 0.052vw gray;
   cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.header-cell:hover {
+  background-color: #f0f0f0;
+}
+
+.header-cell.active {
+  background-color: #EF8000; /* Colore di evidenziazione */
+  color: white;
+  font-weight: bold;
 }
 
 .grid-content {

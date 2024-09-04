@@ -137,20 +137,21 @@
   color: white;
   font-weight: bold;
 }
-
 .grid-content {
   display: flex;
-  overflow-x: auto; /* Permette lo scroll orizzontale per le colonne degli articoli */
+  flex-wrap: wrap; /* Permette alle colonne di andare a capo */
+  gap: 1vw; /* Spazio tra le colonne */
+  padding: 1vw;
 }
 
 .grid-column {
-  flex: 1 0 auto; /* Consente alle colonne di mantenere la loro larghezza e scorrere orizzontalmente */
   display: flex;
-  flex-direction: column;
-  gap: 0.471vw; /* Spazio tra gli articoli */
+  flex-wrap: wrap; /* Permette agli articoli di andare a capo */
+  gap: 1vw; /* Spazio tra gli articoli */
 }
 
 .grid-item {
+  width: 15vw; /* Larghezza fissa per ogni articolo */
   background-color: #fff;
   border: 0.052vw solid #ddd;
   border-radius: 0.26vw;

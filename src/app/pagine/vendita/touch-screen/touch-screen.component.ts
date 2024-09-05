@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
+interface Articolo {
+  nome: string;
+  tipologia: string;
+  prezzo: number; // Aggiunta della proprietà 'prezzo'
+}
+
 interface Categoria {
   nome: string;
-  articoli: { nome: string; tipologia: string }[];
+  articoli: Articolo[];
 }
 
 @Component({
@@ -14,7 +20,7 @@ export class TouchScreenComponent implements OnInit {
   currentTime: string = '';
   currentDate: string = '';
   categoriaSelezionata: Categoria | null = null;
-  articoliFiltrati: { [key: string]: string[] } = {};
+  articoliFiltrati: { [key: string]: Articolo[] } = {};
   tipologie: string[] = [];
   tipologiaSelezionata: string | null = null; // Variabile per tracciare la tipologia selezionata
 
@@ -28,8 +34,6 @@ export class TouchScreenComponent implements OnInit {
       this.selezionaCategoria(categoriaPredefinita);
     }
   }
-
- 
 
   setCurrentDate(): void {
     const now = new Date();
@@ -55,7 +59,7 @@ export class TouchScreenComponent implements OnInit {
       if (!this.articoliFiltrati[articolo.tipologia]) {
         this.articoliFiltrati[articolo.tipologia] = [];
       }
-      this.articoliFiltrati[articolo.tipologia].push(articolo.nome);
+      this.articoliFiltrati[articolo.tipologia].push(articolo);
     });
 
     // Estrai le tipologie
@@ -76,137 +80,190 @@ export class TouchScreenComponent implements OnInit {
       inputElement.value = '';
     }
   }
+
   categorie: Categoria[] = [
     {
       nome: 'Espositori',
       articoli: [
-        { nome: 'Lavandino in Ferro', tipologia: 'Aer4mi' },
-        { nome: 'Lavandino in Ferro', tipologia: 'Arrr4mi' },
-        { nome: 'Lavandino in Ferro', tipologia: 'Arvg4mi' },
-        { nome: 'Lavandino inss Ferro', tipologia: 'Arvg4mi' },
-        { nome: 'Lavandidno in Ferro', tipologia: 'Arvg4mi' },
-        { nome: 'Lavandddino in Ferro', tipologia: 'Arvg4mi' },
-        { nome: 'Lavandino in Ferro', tipologia: 'Arrr4mi' },
-        { nome: 'Lavandino in Ferro', tipologia: 'Arg4mi' },
-        { nome: 'Lavandino in Ferro', tipologia: 'Ar4mi' },
-        { nome: 'Lavandino in Ferro', tipologia: 'Ar5mi' },
-        { nome: 'Lavandino in Ferro', tipologia: 'A3rmi' },
-        { nome: 'Lavandino in Ferro', tipologia: 'Aremi' },
-        { nome: 'Lavandino in Ferro', tipologia: 'A324rmi' },
-        { nome: 'Lavandino in Ferro', tipologia: 'Artmi' },
-        { nome: 'Lavandino in Ferro', tipologia: 'Arggmi' },
-        { nome: 'Lavandino in Ferro', tipologia: 'Arefmi' },
-        { nome: 'Lavandino in Ferro', tipologia: 'Armvti' },
-        { nome: 'Lavandino in Ferro', tipologia: 'Awwrmi' },
-        { nome: 'Lavandino in Ferro', tipologia: 'Ar6mi' },
-        { nome: 'Lavandino in Ferro', tipologia: 'Ar55mi' },
-        { nome: 'Poppice', tipologia: 'Lavandini' },
-        { nome: 'Specchio mimmo', tipologia: 'Specchi' },
+        { nome: 'Lavandino in Ferro', tipologia: 'Aer4mi', prezzo: 150 },
+        { nome: 'Lavandino in Ferro', tipologia: 'Arrr4mi', prezzo: 200 },
+        { nome: 'Lavandino in Ferro', tipologia: 'Arvg4mi', prezzo: 180 },
+        { nome: 'Lavandino inss Ferro', tipologia: 'Arvg4mi', prezzo: 220 },
+        { nome: 'Lavandidno in Ferro', tipologia: 'Arvg4mi', prezzo: 160 },
+        { nome: 'Lavandddino in Ferro', tipologia: 'Arvg4mi', prezzo: 140 },
+        { nome: 'Lavandino in Ferro', tipologia: 'Arrr4mi', prezzo: 240 },
+        { nome: 'Lavandino in Ferro', tipologia: 'Arg4mi', prezzo: 170 },
+        { nome: 'Lavandino in Ferro', tipologia: 'Ar4mi', prezzo: 180 },
+        { nome: 'Lavandino in Ferro', tipologia: 'Ar5mi', prezzo: 190 },
+        { nome: 'Lavandino in Ferro', tipologia: 'A3rmi', prezzo: 130 },
+        { nome: 'Lavandino in Ferro', tipologia: 'Aremi', prezzo: 210 },
+        { nome: 'Lavandino in Ferro', tipologia: 'A324rmi', prezzo: 160 },
+        { nome: 'Lavandino in Ferro', tipologia: 'Artmi', prezzo: 150 },
+        { nome: 'Lavandino in Ferro', tipologia: 'Arggmi', prezzo: 220 },
+        { nome: 'Lavandino in Ferro', tipologia: 'Arefmi', prezzo: 140 },
+        { nome: 'Lavandino in Ferro', tipologia: 'Armvti', prezzo: 180 },
+        { nome: 'Lavandino in Ferro', tipologia: 'Awwrmi', prezzo: 230 },
+        { nome: 'Lavandino in Ferro', tipologia: 'Ar6mi', prezzo: 170 },
+        { nome: 'Lavandino in Ferro', tipologia: 'Ar55mi', prezzo: 210 },
+        { nome: 'Poppice', tipologia: 'Lavandini', prezzo: 100 },
+        { nome: 'Specchio mimmo', tipologia: 'Specchi', prezzo: 80 },
       ],
     },
     {
-      nome: 'Espositori',
+      nome: 'Mobili',
       articoli: [
-        { nome: 'Lavandino in Ferro', tipologia: 'Armi' },
-        { nome: 'Poppice', tipologia: 'Lavandini' },
-        { nome: 'Specchio mimmo', tipologia: 'Specchi' },
+        { nome: 'Sedia in legno', tipologia: 'Sedie', prezzo: 50 },
+        { nome: 'Tavolo in vetro', tipologia: 'Tavoli', prezzo: 300 },
+        { nome: 'Armadio in noce', tipologia: 'Armadi', prezzo: 450 },
+        { nome: 'Divano in pelle', tipologia: 'Divani', prezzo: 700 },
+        { nome: 'Comodino moderno', tipologia: 'Comodini', prezzo: 120 },
+        { nome: 'Letto matrimoniale', tipologia: 'Letti', prezzo: 500 },
+        { nome: 'Scrivania in quercia', tipologia: 'Scrivanie', prezzo: 250 },
       ],
     },
     {
-      nome: 'Espositori',
+      nome: 'Illuminazione',
       articoli: [
-        { nome: 'Lavandino in Ferro', tipologia: 'Armi' },
-        { nome: 'Poppice', tipologia: 'Lavandini' },
-        { nome: 'Specchio mimmo', tipologia: 'Specchi' },
+        { nome: 'Lampadario a sospensione', tipologia: 'Lampadari', prezzo: 150 },
+        { nome: 'Lampada da tavolo', tipologia: 'Lampade', prezzo: 80 },
+        { nome: 'Applique da parete', tipologia: 'Appliques', prezzo: 90 },
+        { nome: 'Faretto LED', tipologia: 'Faretti', prezzo: 60 },
+        { nome: 'Lampada da terra', tipologia: 'Lampade', prezzo: 130 },
       ],
     },
     {
-      nome: 'Ginnanzio',
+      nome: 'Decorazioni',
       articoli: [
-        { nome: 'Lavandino in Ferro2', tipologia: 'Giochi' },
-        { nome: 'La nasita di Alberto', tipologia: 'Giochi' },
-        { nome: 'Specchio Grande', tipologia: 'Specchi' },
+        { nome: 'Quadro moderno', tipologia: 'Quadri', prezzo: 200 },
+        { nome: 'Vaso in ceramica', tipologia: 'Vasi', prezzo: 40 },
+        { nome: 'Tappeto persiano', tipologia: 'Tappeti', prezzo: 300 },
+        { nome: 'Specchio antico', tipologia: 'Specchi', prezzo: 250 },
+        { nome: 'Cuscino decorativo', tipologia: 'Cuscini', prezzo: 30 },
       ],
     },
     {
-      nome: 'Ginnanzio',
+      nome: 'Elettrodomestici',
       articoli: [
-        { nome: 'Lavandino in Ferro2', tipologia: 'Giochi' },
-        { nome: 'La nasita di Alberto', tipologia: 'Giochi' },
-        { nome: 'Specchio Grande', tipologia: 'Specchi' },
+        { nome: 'Frigorifero', tipologia: 'Frigoriferi', prezzo: 900 },
+        { nome: 'Lavatrice', tipologia: 'Lavatrici', prezzo: 400 },
+        { nome: 'Forno a microonde', tipologia: 'Microonde', prezzo: 150 },
+        { nome: 'Aspirapolvere', tipologia: 'Aspirapolveri', prezzo: 200 },
+        { nome: 'Condizionatore', tipologia: 'Climatizzatori', prezzo: 600 },
       ],
     },
     {
-      nome: 'Mollotras',
+      nome: 'Accessori da cucina',
       articoli: [
-        { nome: 'Lavanda in Ferro', tipologia: 'Lavanda' },
-        { nome: 'Lavanda di Nero', tipologia: 'Lavanda' },
-        { nome: 'Specchio Grande bho', tipologia: 'Specchi' },
-      ],
-    },
-    {
-      nome: ' Ismael',
-      articoli: [
-        { nome: 'Ferro', tipologia: 'Nomi' },
-        { nome: 'Nero', tipologia: 'Nomi' },
-        { nome: 'Specchietto per le allodole', tipologia: 'Specchi' },
-      ],
-    },
-    {
-      nome: 'Shalashaska',
-      articoli: [
-        { nome: 'Lavandino in Ferro', tipologia: 'Lavandini' },
-        { nome: 'Lavandino Nero', tipologia: 'Lavandini' },
-        { nome: 'Specchio Grande', tipologia: 'Specchi' },
-      ],
-    },
-    {
-      nome: 'The fear',
-      articoli: [
-        { nome: 'Lavandino in Ferro', tipologia: 'Lavandini' },
-        { nome: 'Lavandino Nero', tipologia: 'Lavandini' },
-        { nome: 'Specchio Grande', tipologia: 'Specchi' },
-      ],
-    },
-    {
-      nome: 'The pain',
-      articoli: [
-        { nome: 'Lavandino in Ferro', tipologia: 'Lavandini' },
-        { nome: 'Lavandino Nero', tipologia: 'Lavandini' },
-        { nome: 'Specchio Grande', tipologia: 'Specchi' },
-      ],
-    },
-    {
-      nome: 'Solid',
-      articoli: [
-        { nome: 'Lavandino in Ferro', tipologia: 'Lavandini' },
-        { nome: 'Lavandino Nero', tipologia: 'Lavandini' },
-        { nome: 'Specchio Grande', tipologia: 'Specchi' },
+        { nome: 'Pentola in acciaio', tipologia: 'Pentole', prezzo: 80 },
+        { nome: 'Set di coltelli', tipologia: 'Coltelli', prezzo: 120 },
+        { nome: 'Tagliere in legno', tipologia: 'Taglieri', prezzo: 30 },
+        { nome: 'Bollitore elettrico', tipologia: 'Elettrodomestici', prezzo: 50 },
+        { nome: 'Tostapane', tipologia: 'Elettrodomestici', prezzo: 40 },
       ],
     },
 
+
     {
-      nome: 'Solidus',
+      nome: 'Accessori da cucina',
       articoli: [
-        { nome: 'Lavandino in Ferro', tipologia: 'Lavandini' },
-        { nome: 'Lavandino Nero', tipologia: 'Lavandini' },
-        { nome: 'Specchio Grande', tipologia: 'Specchi' },
+        { nome: 'Pentola in acciaio', tipologia: 'Pentole', prezzo: 80 },
+        { nome: 'Set di coltelli', tipologia: 'Coltelli', prezzo: 120 },
+        { nome: 'Tagliere in legno', tipologia: 'Taglieri', prezzo: 30 },
+        { nome: 'Bollitore elettrico', tipologia: 'Elettrodomestici', prezzo: 50 },
+        { nome: 'Tostapane', tipologia: 'Elettrodomestici', prezzo: 40 },
       ],
     },
+
+
     {
-      nome: 'Liquid',
+      nome: 'Accessori da cucina',
       articoli: [
-        { nome: 'Tavolo Famiglia', tipologia: 'Tavoli' },
-        { nome: 'Tavolo Singolo', tipologia: 'Tavoli' },
-        { nome: 'Lavello Acciaio', tipologia: 'Lavandini' },
+        { nome: 'Pentola in acciaio', tipologia: 'Pentole', prezzo: 80 },
+        { nome: 'Set di coltelli', tipologia: 'Coltelli', prezzo: 120 },
+        { nome: 'Tagliere in legno', tipologia: 'Taglieri', prezzo: 30 },
+        { nome: 'Bollitore elettrico', tipologia: 'Elettrodomestici', prezzo: 50 },
+        { nome: 'Tostapane', tipologia: 'Elettrodomestici', prezzo: 40 },
       ],
     },
+
+
     {
-      nome: 'Mobili Salotto',
+      nome: 'Accessori da cucina',
       articoli: [
-        { nome: 'Divano Letto', tipologia: 'Divani' },
-        { nome: 'Poltrona Relax', tipologia: 'Poltrone' },
+        { nome: 'Pentola in acciaio', tipologia: 'Pentole', prezzo: 80 },
+        { nome: 'Set di coltelli', tipologia: 'Coltelli', prezzo: 120 },
+        { nome: 'Tagliere in legno', tipologia: 'Taglieri', prezzo: 30 },
+        { nome: 'Bollitore elettrico', tipologia: 'Elettrodomestici', prezzo: 50 },
+        { nome: 'Tostapane', tipologia: 'Elettrodomestici', prezzo: 40 },
       ],
     },
+
+
+
+    {
+      nome: 'Accessori da cucina',
+      articoli: [
+        { nome: 'Pentola in acciaio', tipologia: 'Pentole', prezzo: 80 },
+        { nome: 'Set di coltelli', tipologia: 'Coltelli', prezzo: 120 },
+        { nome: 'Tagliere in legno', tipologia: 'Taglieri', prezzo: 30 },
+        { nome: 'Bollitore elettrico', tipologia: 'Elettrodomestici', prezzo: 50 },
+        { nome: 'Tostapane', tipologia: 'Elettrodomestici', prezzo: 40 },
+      ],
+    },
+
+
+
+    {
+      nome: 'Accessori da cucina',
+      articoli: [
+        { nome: 'Pentola in acciaio', tipologia: 'Pentole', prezzo: 80 },
+        { nome: 'Set di coltelli', tipologia: 'Coltelli', prezzo: 120 },
+        { nome: 'Tagliere in legno', tipologia: 'Taglieri', prezzo: 30 },
+        { nome: 'Bollitore elettrico', tipologia: 'Elettrodomestici', prezzo: 50 },
+        { nome: 'Tostapane', tipologia: 'Elettrodomestici', prezzo: 40 },
+      ],
+    },
+
+
+
+    {
+      nome: 'Accessori da cucina',
+      articoli: [
+        { nome: 'Pentola in acciaio', tipologia: 'Pentole', prezzo: 80 },
+        { nome: 'Set di coltelli', tipologia: 'Coltelli', prezzo: 120 },
+        { nome: 'Tagliere in legno', tipologia: 'Taglieri', prezzo: 30 },
+        { nome: 'Bollitore elettrico', tipologia: 'Elettrodomestici', prezzo: 50 },
+        { nome: 'Tostapane', tipologia: 'Elettrodomestici', prezzo: 40 },
+      ],
+    },
+
+
+
+    {
+      nome: 'Accessori da cucina',
+      articoli: [
+        { nome: 'Pentola in acciaio', tipologia: 'Pentole', prezzo: 80 },
+        { nome: 'Set di coltelli', tipologia: 'Coltelli', prezzo: 120 },
+        { nome: 'Tagliere in legno', tipologia: 'Taglieri', prezzo: 30 },
+        { nome: 'Bollitore elettrico', tipologia: 'Elettrodomestici', prezzo: 50 },
+        { nome: 'Tostapane', tipologia: 'Elettrodomestici', prezzo: 40 },
+      ],
+    },
+
+
+
+
+    {
+      nome: 'Accessori da cucina',
+      articoli: [
+        { nome: 'Pentola in acciaio', tipologia: 'Pentole', prezzo: 80 },
+        { nome: 'Set di coltelli', tipologia: 'Coltelli', prezzo: 120 },
+        { nome: 'Tagliere in legno', tipologia: 'Taglieri', prezzo: 30 },
+        { nome: 'Bollitore elettrico', tipologia: 'Elettrodomestici', prezzo: 50 },
+        { nome: 'Tostapane', tipologia: 'Elettrodomestici', prezzo: 40 },
+      ],
+    },
+
+
   ];
 }

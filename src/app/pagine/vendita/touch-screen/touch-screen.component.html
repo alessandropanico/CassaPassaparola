@@ -35,10 +35,10 @@
 </section>
 
 <!-- Nuova Sezione con Griglia e Pannello Laterale -->
+<!-- Layout Principale -->
 <div class="layout-container">
-  <!-- Pannello delle Categorie a Sinistra -->
+  <!-- Sidebar delle Categorie -->
   <div class="sidebar">
-    <!-- <h3>Categorie</h3> -->
     <ul>
       <li
         *ngFor="let categoria of categorie"
@@ -60,19 +60,36 @@
   <div class="grid">
     <!-- Intestazioni delle Colonne -->
     <div class="header-row">
-      <div *ngFor="let tipologia of tipologie" class="header-cell">
+      <div
+        *ngFor="let tipologia of tipologie"
+        class="header-cell"
+        (click)="selezionaTipologia(tipologia)"
+        [class.active]="tipologia === tipologiaSelezionata">
         {{ tipologia }}
       </div>
     </div>
-    <!-- Articoli Raggruppati per Tipologia -->
+
+    <!-- Mostra gli articoli raggruppati per tipologia -->
     <div class="grid-content">
-      <div class="grid-column" *ngFor="let tipologia of tipologie">
-        <div class="grid-item" *ngFor="let articolo of articoliFiltrati[tipologia]">
-          {{ articolo }}
+      <ng-container *ngIf="tipologiaSelezionata; else mostraTuttiArticoli">
+        <div class="grid-column">
+          <div class="grid-item" *ngFor="let articolo of articoliFiltrati[tipologiaSelezionata]">
+            {{ articolo }}
+          </div>
         </div>
-      </div>
+      </ng-container>
+
+      <!-- Mostra tutti gli articoli se nessuna tipologia è selezionata -->
+      <ng-template #mostraTuttiArticoli>
+        <div class="grid-column" *ngFor="let tipologia of tipologie">
+          <div class="grid-item" *ngFor="let articolo of articoliFiltrati[tipologia]">
+            {{ articolo }}
+          </div>
+        </div>
+      </ng-template>
     </div>
   </div>
 </div>
+
 
 <app-footer></app-footer>

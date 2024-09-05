@@ -16,15 +16,20 @@ export class TouchScreenComponent implements OnInit {
   categoriaSelezionata: Categoria | null = null;
   articoliFiltrati: { [key: string]: string[] } = {};
   tipologie: string[] = [];
+  tipologiaSelezionata: string | null = null; // Variabile per tracciare la tipologia selezionata
 
   ngOnInit(): void {
     this.setCurrentDate();
     this.setCurrentTime();
-    const categoriaPredefinita = this.categorie.find(cat => cat.nome === 'Espositori');
+    const categoriaPredefinita = this.categorie.find(
+      (cat) => cat.nome === 'Espositori'
+    );
     if (categoriaPredefinita) {
       this.selezionaCategoria(categoriaPredefinita);
     }
   }
+
+ 
 
   setCurrentDate(): void {
     const now = new Date();
@@ -55,22 +60,46 @@ export class TouchScreenComponent implements OnInit {
 
     // Estrai le tipologie
     this.tipologie = Object.keys(this.articoliFiltrati);
+
+    // Imposta tipologia selezionata su null per visualizzare tutto all'inizio
+    this.tipologiaSelezionata = null;
+  }
+
+  selezionaTipologia(tipologia: string | null): void {
+    // Aggiorna la variabile tipologiaSelezionata con la tipologia cliccata
+    this.tipologiaSelezionata = tipologia;
   }
 
   resetInput(): void {
-    const inputElement = document.getElementById(
-      'inputCodice'
-    ) as HTMLInputElement;
+    const inputElement = document.getElementById('inputCodice') as HTMLInputElement;
     if (inputElement) {
-      inputElement.value = ''; // Reset the value of the input
+      inputElement.value = '';
     }
   }
-
   categorie: Categoria[] = [
     {
       nome: 'Espositori',
       articoli: [
-        { nome: 'Lavandino in Ferro', tipologia: 'Armi' },
+        { nome: 'Lavandino in Ferro', tipologia: 'Aer4mi' },
+        { nome: 'Lavandino in Ferro', tipologia: 'Arrr4mi' },
+        { nome: 'Lavandino in Ferro', tipologia: 'Arvg4mi' },
+        { nome: 'Lavandino inss Ferro', tipologia: 'Arvg4mi' },
+        { nome: 'Lavandidno in Ferro', tipologia: 'Arvg4mi' },
+        { nome: 'Lavandddino in Ferro', tipologia: 'Arvg4mi' },
+        { nome: 'Lavandino in Ferro', tipologia: 'Arrr4mi' },
+        { nome: 'Lavandino in Ferro', tipologia: 'Arg4mi' },
+        { nome: 'Lavandino in Ferro', tipologia: 'Ar4mi' },
+        { nome: 'Lavandino in Ferro', tipologia: 'Ar5mi' },
+        { nome: 'Lavandino in Ferro', tipologia: 'A3rmi' },
+        { nome: 'Lavandino in Ferro', tipologia: 'Aremi' },
+        { nome: 'Lavandino in Ferro', tipologia: 'A324rmi' },
+        { nome: 'Lavandino in Ferro', tipologia: 'Artmi' },
+        { nome: 'Lavandino in Ferro', tipologia: 'Arggmi' },
+        { nome: 'Lavandino in Ferro', tipologia: 'Arefmi' },
+        { nome: 'Lavandino in Ferro', tipologia: 'Armvti' },
+        { nome: 'Lavandino in Ferro', tipologia: 'Awwrmi' },
+        { nome: 'Lavandino in Ferro', tipologia: 'Ar6mi' },
+        { nome: 'Lavandino in Ferro', tipologia: 'Ar55mi' },
         { nome: 'Poppice', tipologia: 'Lavandini' },
         { nome: 'Specchio mimmo', tipologia: 'Specchi' },
       ],

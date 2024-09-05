@@ -25,12 +25,10 @@
 
 .fa-solid {
   font-size: 2vw;
-
 }
 
 .sezione1 {
   background-color: beige;
-  border: solid 1px;
   border: none;
   width: 100%;
 }
@@ -47,11 +45,9 @@
   margin-right: 1vw;
 }
 
-
 .spazio {
   margin-left: 0.5vw;
 }
-
 
 .myForm {
   width: 7vw;
@@ -68,7 +64,6 @@
 
 .formPers {
   font-weight: bold;
-
 }
 
 .layout-container {
@@ -82,7 +77,6 @@
   padding: 0.521vw;
   background-color: #f2f2f2;
   border-right: 0.104vw solid #ddd;
-
 }
 
 .sidebar h3 {
@@ -114,34 +108,50 @@
   padding: 0.521vw;
   display: flex;
   flex-direction: column;
+  overflow-x: auto; /* Permette lo scroll orizzontale per l'intera griglia */
 }
 
 .header-row {
   display: flex;
   font-weight: bold;
   margin-bottom: 1.099vh;
+  overflow-x: auto; /* Permette lo scroll orizzontale per le intestazioni */
+  white-space: nowrap; /* Impedisce agli elementi di andare a capo */
 }
 
 .header-cell {
-  flex: 1;
+  flex: 1 0 auto; /* Consente alle celle di mantenere la loro larghezza e di scorrere orizzontalmente */
   text-align: center;
   padding: 0.471vw;
-  border:solid 0.052vw gray;
+  border: solid 0.052vw gray;
   cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
 }
 
+.header-cell:hover {
+  background-color: #f0f0f0;
+}
+
+.header-cell.active {
+  background-color: #EF8000; /* Colore di evidenziazione */
+  color: white;
+  font-weight: bold;
+}
 .grid-content {
   display: flex;
+  flex-wrap: wrap; /* Permette alle colonne di andare a capo */
+  gap: 1vw; /* Spazio tra le colonne */
+  padding: 1vw;
 }
 
 .grid-column {
-  flex: 1;
   display: flex;
-  flex-direction: column;
-  gap: 0.471vw; /* Spazio tra gli articoli */
+  flex-wrap: wrap; /* Permette agli articoli di andare a capo */
+  gap: 1vw; /* Spazio tra gli articoli */
 }
 
 .grid-item {
+  width: 15vw; /* Larghezza fissa per ogni articolo */
   background-color: #fff;
   border: 0.052vw solid #ddd;
   border-radius: 0.26vw;

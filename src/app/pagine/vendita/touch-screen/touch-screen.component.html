@@ -47,31 +47,32 @@
   </div>
 
   <!-- Griglia Centrale -->
-  <!-- Griglia Centrale -->
-<div class="grid">
-  <div class="header-row">
-    <div *ngFor="let tipologia of tipologie" class="header-cell" (click)="selezionaTipologia(tipologia)"
-      [class.active]="tipologia === tipologiaSelezionata">
-      {{ tipologia }}
+  <div class="grid">
+    <div class="header-row">
+      <div *ngFor="let tipologia of tipologie" class="header-cell" (click)="selezionaTipologia(tipologia)"
+        [class.active]="tipologia === tipologiaSelezionata">
+        {{ tipologia }}
+      </div>
+    </div>
+    <div class="grid-content">
+      <ng-container *ngIf="tipologiaSelezionata; else mostraTuttiArticoli">
+        <div class="grid-column">
+          <div class="grid-item" *ngFor="let articolo of articoliFiltrati[tipologiaSelezionata]"
+            (click)="selezionaArticolo(articolo)">
+            {{ articolo.nome }} - €{{ articolo.prezzo }}
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #mostraTuttiArticoli>
+        <div class="grid-column" *ngFor="let tipologia of tipologie">
+          <div class="grid-item" *ngFor="let articolo of articoliFiltrati[tipologia]"
+            (click)="selezionaArticolo(articolo)">
+            {{ articolo.nome }} - €{{ articolo.prezzo }}
+          </div>
+        </div>
+      </ng-template>
     </div>
   </div>
-  <div class="grid-content">
-    <ng-container *ngIf="tipologiaSelezionata; else mostraTuttiArticoli">
-      <div class="grid-column">
-        <div class="grid-item" *ngFor="let articolo of articoliFiltrati[tipologiaSelezionata]" (click)="selezionaArticolo(articolo)">
-          {{ articolo.nome }} - €{{ articolo.prezzo }}
-        </div>
-      </div>
-    </ng-container>
-    <ng-template #mostraTuttiArticoli>
-      <div class="grid-column" *ngFor="let tipologia of tipologie">
-        <div class="grid-item" *ngFor="let articolo of articoliFiltrati[tipologia]" (click)="selezionaArticolo(articolo)">
-          {{ articolo.nome }} - €{{ articolo.prezzo }}
-        </div>
-      </div>
-    </ng-template>
-  </div>
-</div>
 
 
   <!-- Sezione della Calcolatrice -->
@@ -111,5 +112,3 @@
     </div>
   </div>
 </div>
-
-

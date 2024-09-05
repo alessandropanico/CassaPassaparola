@@ -27,9 +27,9 @@
       <input class="form-control formPers2" value="Codice Lotteria" readonly />
       <span class="spazio"></span>
       <input class="form-control myForm" type="text" id="inputCodice">
-      <div class="bordoX" >
-      <i class="fa-solid fa-x" (click)="resetInput()"></i>
-    </div>
+      <div class="bordoX">
+        <i class="fa-solid fa-x" (click)="resetInput()"></i>
+      </div>
     </div>
   </div>
 </section>
@@ -40,9 +40,7 @@
   <!-- Sidebar delle Categorie -->
   <div class="sidebar">
     <ul>
-      <li
-        *ngFor="let categoria of categorie"
-        (click)="selezionaCategoria(categoria)"
+      <li *ngFor="let categoria of categorie" (click)="selezionaCategoria(categoria)"
         [class.active]="categoria === categoriaSelezionata">
         {{ categoria.nome }}
       </li>
@@ -51,19 +49,11 @@
 
 
 
-
-
-
-
-  
   <!-- Griglia Centrale -->
   <div class="grid">
     <!-- Intestazioni delle Colonne -->
     <div class="header-row">
-      <div
-        *ngFor="let tipologia of tipologie"
-        class="header-cell"
-        (click)="selezionaTipologia(tipologia)"
+      <div *ngFor="let tipologia of tipologie" class="header-cell" (click)="selezionaTipologia(tipologia)"
         [class.active]="tipologia === tipologiaSelezionata">
         {{ tipologia }}
       </div>

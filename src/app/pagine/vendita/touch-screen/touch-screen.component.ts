@@ -29,7 +29,7 @@ export class TouchScreenComponent implements OnInit {
     }
   }
 
- 
+
 
   setCurrentDate(): void {
     const now = new Date();

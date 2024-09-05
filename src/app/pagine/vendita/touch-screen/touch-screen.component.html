@@ -27,7 +27,8 @@
       <input class="form-control formPers2" value="Codice Lotteria" readonly />
       <span class="spazio"></span>
       <input class="form-control myForm" type="text" id="inputCodice">
-      <div class="bordoX">
+      <div class="bordoX" >
+
         <i class="fa-solid fa-x" (click)="resetInput()"></i>
       </div>
     </div>
@@ -64,7 +65,7 @@
       <ng-container *ngIf="tipologiaSelezionata; else mostraTuttiArticoli">
         <div class="grid-column">
           <div class="grid-item" *ngFor="let articolo of articoliFiltrati[tipologiaSelezionata]">
-            {{ articolo }}
+            {{ articolo.nome }} - €{{ articolo.prezzo }}
           </div>
         </div>
       </ng-container>
@@ -73,13 +74,12 @@
       <ng-template #mostraTuttiArticoli>
         <div class="grid-column" *ngFor="let tipologia of tipologie">
           <div class="grid-item" *ngFor="let articolo of articoliFiltrati[tipologia]">
-            {{ articolo }}
+            {{ articolo.nome }} - €{{ articolo.prezzo }}
           </div>
         </div>
       </ng-template>
     </div>
   </div>
 </div>
-
 
 <app-footer></app-footer>

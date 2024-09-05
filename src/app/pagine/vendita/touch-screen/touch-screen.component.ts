@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
+
 interface Articolo {
   nome: string;
   tipologia: string;
-  prezzo: number; // Aggiunta della proprietà 'prezzo'
+  prezzo: number;
 }
 
 interface Categoria {
@@ -22,7 +23,14 @@ export class TouchScreenComponent implements OnInit {
   categoriaSelezionata: Categoria | null = null;
   articoliFiltrati: { [key: string]: Articolo[] } = {};
   tipologie: string[] = [];
-  tipologiaSelezionata: string | null = null; // Variabile per tracciare la tipologia selezionata
+  tipologiaSelezionata: string | null = null;
+
+  espressione: string = '';
+  risultato: number = 0;
+  iva: number = 22; // IVA al 22%
+  sconto: number = 0;
+  importoPagamento: number = 0;
+  resto: number = 0;
 
   ngOnInit(): void {
     this.setCurrentDate();
@@ -35,44 +43,30 @@ export class TouchScreenComponent implements OnInit {
     }
   }
 
-
-
   setCurrentDate(): void {
     const now = new Date();
-    const year = now.getFullYear();
-    const month = (now.getMonth() + 1).toString().padStart(2, '0');
-    const day = now.getDate().toString().padStart(2, '0');
-    this.currentDate = `${year}-${month}-${day}`;
+    this.currentDate = now.toISOString().split('T')[0];
   }
 
   setCurrentTime(): void {
     const now = new Date();
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    this.currentTime = `${hours}:${minutes}`;
+    this.currentTime = now.toTimeString().split(':').slice(0, 2).join(':');
   }
 
   selezionaCategoria(categoria: Categoria): void {
     this.categoriaSelezionata = categoria;
     this.articoliFiltrati = {};
-
-    // Raggruppa gli articoli per tipologia
     categoria.articoli.forEach((articolo) => {
       if (!this.articoliFiltrati[articolo.tipologia]) {
         this.articoliFiltrati[articolo.tipologia] = [];
       }
       this.articoliFiltrati[articolo.tipologia].push(articolo);
     });
-
-    // Estrai le tipologie
     this.tipologie = Object.keys(this.articoliFiltrati);
-
-    // Imposta tipologia selezionata su null per visualizzare tutto all'inizio
     this.tipologiaSelezionata = null;
   }
 
   selezionaTipologia(tipologia: string | null): void {
-    // Aggiorna la variabile tipologiaSelezionata con la tipologia cliccata
     this.tipologiaSelezionata = tipologia;
   }
 
@@ -82,6 +76,107 @@ export class TouchScreenComponent implements OnInit {
       inputElement.value = '';
     }
   }
+
+  aggiungiNumero(numero: string): void {
+    this.espressione += numero;
+  }
+
+  aggiungiOperazione(operazione: string): void {
+    this.espressione += ` ${operazione} `;
+  }
+
+  calcola(): void {
+    try {
+      this.risultato = this.calcolaEspressione(this.espressione);
+      this.espressione = this.risultato.toString();
+    } catch (error) {
+      console.error('Errore nel calcolo:', error);
+      this.risultato = 0;
+      this.espressione = '';
+    }
+  }
+
+  reset(): void {
+    this.espressione = '';
+    this.risultato = 0;
+  }
+
+  aggiungiIva(): void {
+    this.risultato += (this.risultato * this.iva) / 100;
+    this.espressione = this.risultato.toString();
+  }
+
+  rimuoviIva(): void {
+    this.risultato /= (1 + this.iva / 100);
+    this.espressione = this.risultato.toString();
+  }
+
+  applicaSconto(): void {
+    this.risultato -= (this.risultato * this.sconto) / 100;
+    this.espressione = this.risultato.toString();
+  }
+
+  totale(): void {
+    this.espressione = this.risultato.toString();
+  }
+
+  calcolaResto(): void {
+    this.resto = this.importoPagamento - this.risultato;
+  }
+
+  calcolaEspressione(espressione: string): number {
+    try {
+      // Rimuovi spazi all'inizio e alla fine dell'espressione
+      espressione = espressione.trim();
+
+      // Converte l'espressione in un array di parti, separando per gli spazi
+      const parti = espressione.split(' ').filter(p => p !== '');
+
+      if (parti.length < 3) {
+        throw new Error('Espressione non valida');
+      }
+
+      // Inizializza il risultato con il primo valore
+      let risultato: number = parseFloat(parti[0]);
+
+      // Itera attraverso le parti dell'espressione
+      for (let i = 1; i < parti.length; i += 2) {
+        const operatore = parti[i];
+        const valore = parseFloat(parti[i + 1]);
+
+        if (isNaN(valore)) {
+          throw new Error('Valore non valido');
+        }
+
+        switch (operatore) {
+          case '+':
+            risultato += valore;
+            break;
+          case '-':
+            risultato -= valore;
+            break;
+          case '*':
+            risultato *= valore;
+            break;
+          case '/':
+            if (valore === 0) {
+              throw new Error('Divisione per zero');
+            }
+            risultato /= valore;
+            break;
+          default:
+            throw new Error('Operatore non valido');
+        }
+      }
+
+      return risultato;
+    } catch (error) {
+      console.error('Errore nel calcolo dell\'espressione:', error);
+      return 0;
+    }
+  }
+
+
 
   categorie: Categoria[] = [
     {
@@ -163,109 +258,5 @@ export class TouchScreenComponent implements OnInit {
         { nome: 'Tostapane', tipologia: 'Elettrodomestici', prezzo: 40 },
       ],
     },
-
-
-    {
-      nome: 'Accessori da cucina',
-      articoli: [
-        { nome: 'Pentola in acciaio', tipologia: 'Pentole', prezzo: 80 },
-        { nome: 'Set di coltelli', tipologia: 'Coltelli', prezzo: 120 },
-        { nome: 'Tagliere in legno', tipologia: 'Taglieri', prezzo: 30 },
-        { nome: 'Bollitore elettrico', tipologia: 'Elettrodomestici', prezzo: 50 },
-        { nome: 'Tostapane', tipologia: 'Elettrodomestici', prezzo: 40 },
-      ],
-    },
-
-
-    {
-      nome: 'Accessori da cucina',
-      articoli: [
-        { nome: 'Pentola in acciaio', tipologia: 'Pentole', prezzo: 80 },
-        { nome: 'Set di coltelli', tipologia: 'Coltelli', prezzo: 120 },
-        { nome: 'Tagliere in legno', tipologia: 'Taglieri', prezzo: 30 },
-        { nome: 'Bollitore elettrico', tipologia: 'Elettrodomestici', prezzo: 50 },
-        { nome: 'Tostapane', tipologia: 'Elettrodomestici', prezzo: 40 },
-      ],
-    },
-
-
-    {
-      nome: 'Accessori da cucina',
-      articoli: [
-        { nome: 'Pentola in acciaio', tipologia: 'Pentole', prezzo: 80 },
-        { nome: 'Set di coltelli', tipologia: 'Coltelli', prezzo: 120 },
-        { nome: 'Tagliere in legno', tipologia: 'Taglieri', prezzo: 30 },
-        { nome: 'Bollitore elettrico', tipologia: 'Elettrodomestici', prezzo: 50 },
-        { nome: 'Tostapane', tipologia: 'Elettrodomestici', prezzo: 40 },
-      ],
-    },
-
-
-
-    {
-      nome: 'Accessori da cucina',
-      articoli: [
-        { nome: 'Pentola in acciaio', tipologia: 'Pentole', prezzo: 80 },
-        { nome: 'Set di coltelli', tipologia: 'Coltelli', prezzo: 120 },
-        { nome: 'Tagliere in legno', tipologia: 'Taglieri', prezzo: 30 },
-        { nome: 'Bollitore elettrico', tipologia: 'Elettrodomestici', prezzo: 50 },
-        { nome: 'Tostapane', tipologia: 'Elettrodomestici', prezzo: 40 },
-      ],
-    },
-
-
-
-    {
-      nome: 'Accessori da cucina',
-      articoli: [
-        { nome: 'Pentola in acciaio', tipologia: 'Pentole', prezzo: 80 },
-        { nome: 'Set di coltelli', tipologia: 'Coltelli', prezzo: 120 },
-        { nome: 'Tagliere in legno', tipologia: 'Taglieri', prezzo: 30 },
-        { nome: 'Bollitore elettrico', tipologia: 'Elettrodomestici', prezzo: 50 },
-        { nome: 'Tostapane', tipologia: 'Elettrodomestici', prezzo: 40 },
-      ],
-    },
-
-
-
-    {
-      nome: 'Accessori da cucina',
-      articoli: [
-        { nome: 'Pentola in acciaio', tipologia: 'Pentole', prezzo: 80 },
-        { nome: 'Set di coltelli', tipologia: 'Coltelli', prezzo: 120 },
-        { nome: 'Tagliere in legno', tipologia: 'Taglieri', prezzo: 30 },
-        { nome: 'Bollitore elettrico', tipologia: 'Elettrodomestici', prezzo: 50 },
-        { nome: 'Tostapane', tipologia: 'Elettrodomestici', prezzo: 40 },
-      ],
-    },
-
-
-
-    {
-      nome: 'Accessori da cucina',
-      articoli: [
-        { nome: 'Pentola in acciaio', tipologia: 'Pentole', prezzo: 80 },
-        { nome: 'Set di coltelli', tipologia: 'Coltelli', prezzo: 120 },
-        { nome: 'Tagliere in legno', tipologia: 'Taglieri', prezzo: 30 },
-        { nome: 'Bollitore elettrico', tipologia: 'Elettrodomestici', prezzo: 50 },
-        { nome: 'Tostapane', tipologia: 'Elettrodomestici', prezzo: 40 },
-      ],
-    },
-
-
-
-
-    {
-      nome: 'Accessori da cucina',
-      articoli: [
-        { nome: 'Pentola in acciaio', tipologia: 'Pentole', prezzo: 80 },
-        { nome: 'Set di coltelli', tipologia: 'Coltelli', prezzo: 120 },
-        { nome: 'Tagliere in legno', tipologia: 'Taglieri', prezzo: 30 },
-        { nome: 'Bollitore elettrico', tipologia: 'Elettrodomestici', prezzo: 50 },
-        { nome: 'Tostapane', tipologia: 'Elettrodomestici', prezzo: 40 },
-      ],
-    },
-
-
   ];
 }

@@ -8,6 +8,7 @@ import { HomeComponent } from './pagine/home/home.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { VenditaComponent } from './pagine/vendita/vendita/vendita.component';
 import { TouchScreenComponent } from './pagine/vendita/touch-screen/touch-screen.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TouchScreenComponent } from './pagine/vendita/touch-screen/touch-screen
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
   providers: [
     provideClientHydration()

@@ -4,7 +4,7 @@
   </div>
 </div>
 
-<!-- Sezione esistente -->
+<!-- Sezione Esistente -->
 <section class="sezione1">
   <div class="contInput">
     <input class="form-control myForm" value="Numero" readonly />
@@ -27,8 +27,7 @@
       <input class="form-control formPers2" value="Codice Lotteria" readonly />
       <span class="spazio"></span>
       <input class="form-control myForm" type="text" id="inputCodice">
-      <div class="bordoX" >
-
+      <div class="bordoX">
         <i class="fa-solid fa-x" (click)="resetInput()"></i>
       </div>
     </div>
@@ -36,7 +35,6 @@
 </section>
 
 <!-- Nuova Sezione con Griglia e Pannello Laterale -->
-<!-- Layout Principale -->
 <div class="layout-container">
   <!-- Sidebar delle Categorie -->
   <div class="sidebar">
@@ -50,25 +48,14 @@
 
 
 
-  <!--CALCOLATRICE-->
-  
-
-
-
-
-
-
   <!-- Griglia Centrale -->
   <div class="grid">
-    <!-- Intestazioni delle Colonne -->
     <div class="header-row">
       <div *ngFor="let tipologia of tipologie" class="header-cell" (click)="selezionaTipologia(tipologia)"
         [class.active]="tipologia === tipologiaSelezionata">
         {{ tipologia }}
       </div>
     </div>
-
-    <!-- Mostra gli articoli raggruppati per tipologia -->
     <div class="grid-content">
       <ng-container *ngIf="tipologiaSelezionata; else mostraTuttiArticoli">
         <div class="grid-column">
@@ -77,8 +64,6 @@
           </div>
         </div>
       </ng-container>
-
-      <!-- Mostra tutti gli articoli se nessuna tipologia è selezionata -->
       <ng-template #mostraTuttiArticoli>
         <div class="grid-column" *ngFor="let tipologia of tipologie">
           <div class="grid-item" *ngFor="let articolo of articoliFiltrati[tipologia]">
@@ -88,6 +73,49 @@
       </ng-template>
     </div>
   </div>
+
+
+
+  <!-- Sezione della Calcolatrice -->
+  <!-- Sezione della Calcolatrice -->
+<div class="calcolatrice-container">
+  <div class="display">{{ espressione || '0' }}</div>
+  <div class="buttons">
+    <button class="btn" (click)="aggiungiNumero('1')">1</button>
+    <button class="btn" (click)="aggiungiNumero('2')">2</button>
+    <button class="btn" (click)="aggiungiNumero('3')">3</button>
+    <button class="btn" (click)="aggiungiOperazione('+')">+</button>
+    <button class="btn" (click)="aggiungiNumero('4')">4</button>
+    <button class="btn" (click)="aggiungiNumero('5')">5</button>
+    <button class="btn" (click)="aggiungiNumero('6')">6</button>
+    <button class="btn" (click)="aggiungiOperazione('-')">-</button>
+    <button class="btn" (click)="aggiungiNumero('7')">7</button>
+    <button class="btn" (click)="aggiungiNumero('8')">8</button>
+    <button class="btn" (click)="aggiungiNumero('9')">9</button>
+    <button class="btn" (click)="aggiungiOperazione('*')">x</button>
+    <button class="btn" (click)="aggiungiNumero('0')">0</button>
+    <button class="btn" (click)="aggiungiOperazione('/')">/</button>
+    <button class="btn uguale" (click)="calcola()">=</button>
+    <button class="btn reset" (click)="reset()">C</button>
+    <button class="btn" (click)="aggiungiIva()">+IVA</button>
+    <button class="btn" (click)="rimuoviIva()">-IVA</button>
+    <button class="btn" (click)="applicaSconto()">Sconto%</button>
+    <button class="btn" (click)="totale()">Totale</button>
+  </div>
+
+  <div class="pagamento">
+    <label for="pagaContanti">Contanti: </label>
+    <input type="number" id="pagaContanti" placeholder="Inserisci importo" [(ngModel)]="importoPagamento">
+    <button class="btn" (click)="calcolaResto()">Calcola Resto</button>
+  </div>
+
+  <div class="resto-display">
+    Resto: <span id="resto">{{ resto || '0' }}</span>
+  </div>
 </div>
 
-<app-footer></app-footer>
+
+
+
+
+</div>

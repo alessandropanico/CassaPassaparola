@@ -171,3 +171,79 @@
   padding: 0.521vw;
   text-align: center;
 }
+
+
+/*----------------------*/
+.calcolatrice-container {
+  width: 30%;
+  background-color: #f2f2f2;
+  border: 0.052vw solid #ddd;
+  border-radius: 0.26vw;
+  padding: 1vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+}
+
+.display {
+  background-color: #333;
+  color: white;
+  font-size: 2vw;
+  width: 100%;
+  text-align: right;
+  padding: 0.5vw;
+  border-radius: 0.26vw;
+  margin-bottom: 1vw;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 0.5vw;
+}
+
+.btn {
+  padding: 1vw;
+  background-color: #efefef;
+  border: none;
+  font-size: 1.5vw;
+  cursor: pointer;
+  border-radius: 0.26vw;
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: #ddd;
+}
+
+.operazione {
+  background-color: #ef8000;
+  color: white;
+}
+
+.uguale {
+  background-color: #28a745;
+  color: white;
+}
+
+.reset {
+  background-color: red;
+  color: white;
+}
+
+.pagamento {
+  margin-top: 1vw;
+}
+
+.pagamento input {
+  width: 50%;
+  padding: 0.5vw;
+  font-size: 1.2vw;
+  margin-right: 1vw;
+}
+
+.resto-display {
+  margin-top: 1vw;
+  font-size: 1.5vw;
+}

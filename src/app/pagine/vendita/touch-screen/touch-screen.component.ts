@@ -32,6 +32,14 @@ export class TouchScreenComponent implements OnInit {
   importoPagamento: number = 0;
   resto: number = 0;
 
+  numero: number = 1;
+
+
+  quantita: number = 1; // Quantità predefinita
+  articoloSelezionato: Articolo | null = null;
+
+
+
   ngOnInit(): void {
     this.setCurrentDate();
     this.setCurrentTime();
@@ -53,21 +61,35 @@ export class TouchScreenComponent implements OnInit {
     this.currentTime = now.toTimeString().split(':').slice(0, 2).join(':');
   }
 
+  // Funzione per selezionare una categoria
   selezionaCategoria(categoria: Categoria): void {
     this.categoriaSelezionata = categoria;
-    this.articoliFiltrati = {};
-    categoria.articoli.forEach((articolo) => {
-      if (!this.articoliFiltrati[articolo.tipologia]) {
-        this.articoliFiltrati[articolo.tipologia] = [];
-      }
-      this.articoliFiltrati[articolo.tipologia].push(articolo);
-    });
-    this.tipologie = Object.keys(this.articoliFiltrati);
+    this.tipologie = Array.from(
+      new Set(categoria.articoli.map((articolo) => articolo.tipologia))
+    );
+    this.articoliFiltrati = this.tipologie.reduce((acc, tipologia) => {
+      acc[tipologia] = categoria.articoli.filter(
+        (articolo) => articolo.tipologia === tipologia
+      );
+      return acc;
+    }, {} as { [key: string]: Articolo[] });
     this.tipologiaSelezionata = null;
   }
 
-  selezionaTipologia(tipologia: string | null): void {
+  // Funzione per selezionare una tipologia
+  selezionaTipologia(tipologia: string): void {
     this.tipologiaSelezionata = tipologia;
+  }
+
+  // Funzione per selezionare un articolo
+  selezionaArticolo(articolo: Articolo): void {
+    this.articoloSelezionato = articolo;
+    this.aggiungiPrezzoAllaCalcolatrice(articolo.prezzo);
+  }
+
+  // Aggiunge il prezzo dell'articolo selezionato al display della calcolatrice
+  aggiungiPrezzoAllaCalcolatrice(prezzo: number): void {
+    this.espressione += prezzo.toString();  // Aggiunge il prezzo all'espressione
   }
 
   resetInput(): void {
@@ -78,11 +100,17 @@ export class TouchScreenComponent implements OnInit {
   }
 
   aggiungiNumero(numero: string): void {
-    this.espressione += numero;
+    if (this.espressione === '0') {
+      this.espressione = numero;
+    } else {
+      this.espressione += numero;
+    }
   }
 
   aggiungiOperazione(operazione: string): void {
-    this.espressione += ` ${operazione} `;
+    if (this.espressione) {
+      this.espressione += ` ${operazione} `;
+    }
   }
 
   calcola(): void {
@@ -122,6 +150,10 @@ export class TouchScreenComponent implements OnInit {
 
   calcolaResto(): void {
     this.resto = this.importoPagamento - this.risultato;
+  }
+
+  calcolaTotale(): number {
+    return this.articoloSelezionato ? (this.articoloSelezionato.prezzo * this.quantita) : 0;
   }
 
   calcolaEspressione(espressione: string): number {

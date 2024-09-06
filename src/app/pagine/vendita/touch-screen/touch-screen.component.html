@@ -57,24 +57,6 @@
 
 
     <!--GRIGLIA-->
-    <!-- <div class="grid-content">
-      <ng-container *ngIf="tipologiaSelezionata; else mostraTuttiArticoli">
-        <div class="grid-column">
-          <div class="grid-item" *ngFor="let articolo of articoliFiltrati[tipologiaSelezionata]"
-            (click)="selezionaArticolo(articolo)">
-            {{ articolo.nome }} - €{{ articolo.prezzo }}
-          </div>
-        </div>
-      </ng-container>
-      <ng-template #mostraTuttiArticoli>
-        <div class="grid-column" *ngFor="let tipologia of tipologie">
-          <div class="grid-item" *ngFor="let articolo of articoliFiltrati[tipologia]"
-            (click)="selezionaArticolo(articolo)">
-            {{ articolo.nome }} - €{{ articolo.prezzo }}
-          </div>
-        </div>
-      </ng-template>
-    </div> -->
     <div class="container text-center">
       <!-- Contenitore con altezza fissa e scroll verticale -->
       <div class="prodotti-scroll">
@@ -152,4 +134,6 @@
       Resto: <span id="resto">{{ resto || '0' }}</span>
     </div>
   </div>
+
+
 </div>

@@ -54,7 +54,10 @@
         {{ tipologia }}
       </div>
     </div>
-    <div class="grid-content">
+
+
+    <!--GRIGLIA-->
+    <!-- <div class="grid-content">
       <ng-container *ngIf="tipologiaSelezionata; else mostraTuttiArticoli">
         <div class="grid-column">
           <div class="grid-item" *ngFor="let articolo of articoliFiltrati[tipologiaSelezionata]"
@@ -71,7 +74,45 @@
           </div>
         </div>
       </ng-template>
+    </div> -->
+    <div class="container text-center">
+      <!-- Contenitore con altezza fissa e scroll verticale -->
+      <div class="prodotti-scroll">
+        <!-- Se è selezionata una tipologia specifica, mostra solo gli articoli filtrati -->
+        <ng-container *ngIf="tipologiaSelezionata; else mostraTuttiArticoli">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+            <div class="col" *ngFor="let articolo of articoliFiltrati[tipologiaSelezionata] || []"
+                 (click)="selezionaArticolo(articolo)">
+              <div class="articolo-card p-3 border">
+                <h6>{{ articolo.nome }}</h6>
+                <p>€{{ articolo.prezzo }}</p>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- Se non è selezionata alcuna tipologia, mostra tutti gli articoli di tutte le tipologie -->
+        <ng-template #mostraTuttiArticoli>
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+            <ng-container *ngFor="let tipologia of tipologie">
+              <div class="col" *ngFor="let articolo of articoliFiltrati[tipologia] || []"
+                   (click)="selezionaArticolo(articolo)">
+                <div class="articolo-card p-3 border">
+                  <h6>{{ articolo.nome }}</h6>
+                  <p>€{{ articolo.prezzo }}</p>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </ng-template>
+      </div>
     </div>
+
+
+
+
+
+
   </div>
 
 

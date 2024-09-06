@@ -107,22 +107,17 @@
 
 .grid {
   flex: 1;
-  padding: 0.521vw;
   display: flex;
   flex-direction: column;
   overflow-x: auto;
   cursor: pointer;
-  /* Permette lo scroll orizzontale per l'intera griglia */
 }
 
 .header-row {
   display: flex;
   font-weight: bold;
-  margin-bottom: 1.099vh;
   overflow-x: scroll;
-  /* Permette lo scroll orizzontale per le intestazioni */
   white-space: nowrap;
-  /* Impedisce agli elementi di andare a capo */
 }
 
 .header-cell {
@@ -314,9 +309,9 @@
   flex: 1 1 calc(25% - 10px);
   /* Larghezza fissa per ogni bottone (25% della riga) */
   padding: 15px;
-  border: 1px solid #ddd;
+  border: 1px solid #000000;
   border-radius: 5px;
-  background-color: #f0f0f0;
+  background-color: #ffffff;
   cursor: pointer;
   font-size: 1.2em;
   box-sizing: border-box;

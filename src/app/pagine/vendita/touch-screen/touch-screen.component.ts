@@ -11,6 +11,10 @@ interface Categoria {
   nome: string;
   articoli: Articolo[];
 }
+interface ProdottoSelezionato {
+  articolo: Articolo;
+  quantita: number;
+}
 
 @Component({
   selector: 'app-touch-screen',
@@ -38,6 +42,7 @@ export class TouchScreenComponent implements OnInit {
   quantita: number = 1; // Quantità predefinita
   articoloSelezionato: Articolo | null = null;
 
+  prodottiSelezionati: ProdottoSelezionato[] = [];
 
 
   ngOnInit(): void {
@@ -84,8 +89,21 @@ export class TouchScreenComponent implements OnInit {
   // Funzione per selezionare un articolo
   selezionaArticolo(articolo: Articolo): void {
     this.articoloSelezionato = articolo;
-    this.aggiungiPrezzoAllaCalcolatrice(articolo.prezzo);
+    const prodottoEsistente = this.prodottiSelezionati.find(p => p.articolo.nome === articolo.nome);
+    if (prodottoEsistente) {
+      prodottoEsistente.quantita += this.quantita;
+    } else {
+      this.prodottiSelezionati.push({ articolo, quantita: this.quantita });
+    }
+    // Mostra il totale dei prodotti selezionati nel display
+    this.espressione = this.calcolaTotaleProdotti().toString();
   }
+
+
+  calcolaTotaleProdotti(): number {
+    return this.prodottiSelezionati.reduce((totale, prodotto) => totale + (prodotto.articolo.prezzo * prodotto.quantita), 0);
+  }
+
 
   // Aggiunge il prezzo dell'articolo selezionato al display della calcolatrice
   aggiungiPrezzoAllaCalcolatrice(prezzo: number): void {
@@ -124,10 +142,13 @@ export class TouchScreenComponent implements OnInit {
     }
   }
 
+
   reset(): void {
     this.espressione = '';
     this.risultato = 0;
+    this.prodottiSelezionati = [];
   }
+
 
   aggiungiIva(): void {
     this.risultato += (this.risultato * this.iva) / 100;

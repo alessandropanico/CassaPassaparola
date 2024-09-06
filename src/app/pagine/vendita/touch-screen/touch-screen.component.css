@@ -200,75 +200,110 @@
 
 /*----------------------*/
 .calcolatrice-container {
-  width: 30%;
-  background-color: #f2f2f2;
-  border: 0.052vw solid #ddd;
-  border-radius: 0.26vw;
-  padding: 1vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  width: 500px; /* Imposta una larghezza fissa o adatta come preferisci */
+  overflow-y: auto; /* Abilita lo scroll verticale */
+  max-height: 600px; /* Imposta un'altezza massima per la calcolatrice */
 }
 
 .display {
-  background-color: #333;
-  color: white;
-  font-size: 2vw;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  font-size: 1.2em;
+}
+
+.espressione {
+  margin-bottom: 10px;
+}
+
+.totale-prodotti {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.prodotti-selezionati {
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  margin-top: 10px;
+}
+
+.prodotti-selezionati h5 {
+  margin-bottom: 10px;
+}
+
+.prodotti-selezionati table {
   width: 100%;
-  text-align: right;
-  padding: 0.5vw;
-  border-radius: 0.26vw;
-  margin-bottom: 1vw;
+  border-collapse: collapse;
+}
+
+.prodotti-selezionati th, .prodotti-selezionati td {
+  padding: 8px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.prodotti-selezionati th {
+  background-color: #f0f0f0;
+}
+
+.prodotti-selezionati tfoot td {
+  font-weight: bold;
 }
 
 .buttons {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 0.5vw;
+  gap: 5px;
 }
 
 .btn {
-  padding: 1vw;
-  background-color: #efefef;
-  border: none;
-  font-size: 1.5vw;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f0f0f0;
   cursor: pointer;
-  border-radius: 0.26vw;
-  text-align: center;
+  font-size: 1em;
 }
 
-.btn:hover {
-  background-color: #ddd;
+.btn:active {
+  background-color: #e0e0e0;
 }
 
-.operazione {
-  background-color: #ef8000;
-  color: white;
+.btn.uguale {
+  background-color: #007bff;
+  color: #fff;
 }
 
-.uguale {
-  background-color: #28a745;
-  color: white;
+.btn.uguale:active {
+  background-color: #0056b3;
 }
 
-.reset {
-  background-color: red;
-  color: white;
+.btn.reset {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.btn.reset:active {
+  background-color: #c82333;
 }
 
 .pagamento {
-  margin-top: 1vw;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.pagamento input {
-  width: 50%;
-  padding: 0.5vw;
-  font-size: 1.2vw;
-  margin-right: 1vw;
+#pagaContanti {
+  margin-bottom: 10px;
 }
 
 .resto-display {
-  margin-top: 1vw;
-  font-size: 1.5vw;
+  margin-top: 10px;
+  font-weight: bold;
 }

@@ -113,6 +113,11 @@ export class TouchScreenComponent implements OnInit {
     }
   }
 
+  rimuoviProdotto(indice: number): void {
+    this.prodottiSelezionati.splice(indice, 1);
+  }
+
+
   aggiungiNumero(numero: string): void {
     if (numero === '.' && this.espressione.includes('.')) {
       return; // Evita di aggiungere più di un punto decimale in un numero

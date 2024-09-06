@@ -120,19 +120,24 @@
               <th class="titoloColonna">Quantità</th>
               <th class="titoloColonna">Prezzo Unitario</th>
               <th class="titoloColonna">Totale</th>
+              <th class="titoloColonna">Azione</th> <!-- Nuova colonna per il pulsante di rimozione -->
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let prodotto of prodottiSelezionati">
+            <tr *ngFor="let prodotto of prodottiSelezionati; let i = index">
               <td class="testoColonna">{{ prodotto.articolo.nome }}</td>
               <td class="testoColonna">{{ prodotto.articolo.tipologia }}</td>
               <td class="testoColonna">{{ prodotto.quantita }}</td>
               <td class="testoColonna">€{{ prodotto.articolo.prezzo.toFixed(2) }}</td>
               <td class="testoColonna">€{{ (prodotto.articolo.prezzo * prodotto.quantita).toFixed(2) }}</td>
+              <td class="testoColonna">
+                <button class="btn btn-danger buttonPers" (click)="rimuoviProdotto(i)">Rimuovi</button>
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
+
     </div>
 
     <!-- Bottoni della calcolatrice -->

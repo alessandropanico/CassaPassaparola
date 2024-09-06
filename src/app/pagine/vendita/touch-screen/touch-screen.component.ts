@@ -149,9 +149,8 @@ export class TouchScreenComponent implements OnInit {
 
   reset(): void {
     this.espressione = '';
-    this.risultato = 0;
-    this.prodottiSelezionati = [];
-  }
+}
+
 
   aggiungiIva(): void {
     this.risultato += (this.risultato * this.iva) / 100;

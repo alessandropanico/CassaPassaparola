@@ -197,6 +197,15 @@
   padding: 0rem !important;
 }
 
+.titoloColonna{
+  font-size: 12px;
+}
+
+.testoColonna{
+  font-size: 10px;
+
+}
+
 
 /*----------------------*/
 .calcolatrice-container {

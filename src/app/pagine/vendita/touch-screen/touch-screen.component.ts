@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-
 interface Articolo {
   nome: string;
   tipologia: string;
@@ -11,6 +10,7 @@ interface Categoria {
   nome: string;
   articoli: Articolo[];
 }
+
 interface ProdottoSelezionato {
   articolo: Articolo;
   quantita: number;
@@ -37,13 +37,9 @@ export class TouchScreenComponent implements OnInit {
   resto: number = 0;
 
   numero: number = 1;
-
-
   quantita: number = 1; // Quantità predefinita
   articoloSelezionato: Articolo | null = null;
-
   prodottiSelezionati: ProdottoSelezionato[] = [];
-
 
   ngOnInit(): void {
     this.setCurrentDate();
@@ -89,41 +85,50 @@ export class TouchScreenComponent implements OnInit {
   // Funzione per selezionare un articolo
   selezionaArticolo(articolo: Articolo): void {
     this.articoloSelezionato = articolo;
-    const prodottoEsistente = this.prodottiSelezionati.find(p => p.articolo.nome === articolo.nome);
+    const prodottoEsistente = this.prodottiSelezionati.find(
+      (p) => p.articolo.nome === articolo.nome
+    );
     if (prodottoEsistente) {
       prodottoEsistente.quantita += this.quantita;
     } else {
       this.prodottiSelezionati.push({ articolo, quantita: this.quantita });
     }
-    // Mostra il totale dei prodotti selezionati nel display
-    this.espressione = this.calcolaTotaleProdotti().toString();
+    console.log('Prodotti Selezionati:', this.prodottiSelezionati);
   }
-
 
   calcolaTotaleProdotti(): number {
-    return this.prodottiSelezionati.reduce((totale, prodotto) => totale + (prodotto.articolo.prezzo * prodotto.quantita), 0);
-  }
-
-
-  // Aggiunge il prezzo dell'articolo selezionato al display della calcolatrice
-  aggiungiPrezzoAllaCalcolatrice(prezzo: number): void {
-    this.espressione += prezzo.toString();  // Aggiunge il prezzo all'espressione
+    return this.prodottiSelezionati.reduce(
+      (totale, prodotto) =>
+        totale + prodotto.articolo.prezzo * prodotto.quantita,
+      0
+    );
   }
 
   resetInput(): void {
-    const inputElement = document.getElementById('inputCodice') as HTMLInputElement;
+    const inputElement = document.getElementById(
+      'inputCodice'
+    ) as HTMLInputElement;
     if (inputElement) {
       inputElement.value = '';
     }
   }
 
   aggiungiNumero(numero: string): void {
-    if (this.espressione === '0') {
-      this.espressione = numero;
+    if (numero === '.' && this.espressione.includes('.')) {
+      return; // Evita di aggiungere più di un punto decimale in un numero
+    }
+
+    // Se la calcolatrice è in uno stato "reset" (espressione vuota), inizia con '0' se l'utente preme '.'
+    if (this.espressione === '' && numero === '.') {
+      this.espressione = '0.';
+    } else if (this.espressione.endsWith(' ') && numero === '.') {
+      // Se c'è uno spazio (indica un'operazione prima), inizia il nuovo numero con '0.'
+      this.espressione += '0.';
     } else {
       this.espressione += numero;
     }
   }
+
 
   aggiungiOperazione(operazione: string): void {
     if (this.espressione) {
@@ -142,13 +147,11 @@ export class TouchScreenComponent implements OnInit {
     }
   }
 
-
   reset(): void {
     this.espressione = '';
     this.risultato = 0;
     this.prodottiSelezionati = [];
   }
-
 
   aggiungiIva(): void {
     this.risultato += (this.risultato * this.iva) / 100;
@@ -156,7 +159,7 @@ export class TouchScreenComponent implements OnInit {
   }
 
   rimuoviIva(): void {
-    this.risultato /= (1 + this.iva / 100);
+    this.risultato /= 1 + this.iva / 100;
     this.espressione = this.risultato.toString();
   }
 
@@ -173,26 +176,17 @@ export class TouchScreenComponent implements OnInit {
     this.resto = this.importoPagamento - this.risultato;
   }
 
-  calcolaTotale(): number {
-    return this.articoloSelezionato ? (this.articoloSelezionato.prezzo * this.quantita) : 0;
-  }
-
   calcolaEspressione(espressione: string): number {
     try {
-      // Rimuovi spazi all'inizio e alla fine dell'espressione
       espressione = espressione.trim();
-
-      // Converte l'espressione in un array di parti, separando per gli spazi
-      const parti = espressione.split(' ').filter(p => p !== '');
+      const parti = espressione.split(' ').filter((p) => p !== '');
 
       if (parti.length < 3) {
         throw new Error('Espressione non valida');
       }
 
-      // Inizializza il risultato con il primo valore
       let risultato: number = parseFloat(parti[0]);
 
-      // Itera attraverso le parti dell'espressione
       for (let i = 1; i < parti.length; i += 2) {
         const operatore = parti[i];
         const valore = parseFloat(parti[i + 1]);
@@ -224,11 +218,10 @@ export class TouchScreenComponent implements OnInit {
 
       return risultato;
     } catch (error) {
-      console.error('Errore nel calcolo dell\'espressione:', error);
+      console.error("Errore nel calcolo dell'espressione:", error);
       return 0;
     }
   }
-
 
 
   categorie: Categoria[] = [

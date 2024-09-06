@@ -204,8 +204,7 @@
   padding: 10px;
   border-radius: 5px;
   width: 500px; /* Imposta una larghezza fissa o adatta come preferisci */
-  overflow-y: auto; /* Abilita lo scroll verticale */
-  max-height: 600px; /* Imposta un'altezza massima per la calcolatrice */
+  height: 600px; /* Imposta un'altezza massima per la calcolatrice */
 }
 
 .display {

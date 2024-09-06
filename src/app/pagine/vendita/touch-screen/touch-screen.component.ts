@@ -44,7 +44,7 @@ export class TouchScreenComponent implements OnInit {
 
   categorie: Categoria[] = [];
 
-  constructor(private prodottiService: ProdottiService) {}
+  constructor(private prodottiService: ProdottiService) { }
 
   ngOnInit(): void {
     this.setCurrentDate();

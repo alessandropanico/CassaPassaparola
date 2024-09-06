@@ -10,19 +10,14 @@
     <input class="form-control myForm" value="Numero" readonly />
     <span class="spazio"></span>
     <input class="form-control myForm" type="number" [(ngModel)]="numero" />
-
     <span class="spazio"></span>
-
     <input class="form-control myForm" value="Data" readonly />
     <span class="spazio"></span>
     <input class="form-control formPers2" type="date" [value]="currentDate" />
-
     <span class="spazio"></span>
-
     <input class="form-control myForm" value="Orario" readonly />
     <span class="spazio"></span>
     <input class="form-control formPers myForm" type="time" [value]="currentTime" />
-
     <div class="contInput2">
       <input class="form-control formPers2" value="Codice Lotteria" readonly />
       <span class="spazio"></span>
@@ -57,7 +52,7 @@
 
 
     <!--GRIGLIA-->
-    <div class="container text-center">
+    <div class="text-center">
       <!-- Contenitore con altezza fissa e scroll verticale -->
       <div class="prodotti-scroll">
         <!-- Se è selezionata una tipologia specifica, mostra solo gli articoli filtrati -->
@@ -141,29 +136,56 @@
     </div>
 
     <!-- Bottoni della calcolatrice -->
-    <div class="buttons">
-      <button class="btn" (click)="aggiungiNumero('1')">1</button>
-      <button class="btn" (click)="aggiungiNumero('2')">2</button>
-      <button class="btn" (click)="aggiungiNumero('3')">3</button>
-      <button class="btn" (click)="aggiungiOperazione('+')">+</button>
-      <button class="btn" (click)="aggiungiNumero('4')">4</button>
-      <button class="btn" (click)="aggiungiNumero('5')">5</button>
-      <button class="btn" (click)="aggiungiNumero('6')">6</button>
-      <button class="btn" (click)="aggiungiOperazione('-')">-</button>
-      <button class="btn" (click)="aggiungiNumero('7')">7</button>
-      <button class="btn" (click)="aggiungiNumero('8')">8</button>
-      <button class="btn" (click)="aggiungiNumero('9')">9</button>
-      <button class="btn" (click)="aggiungiOperazione('*')">x</button>
-      <button class="btn" (click)="aggiungiNumero('0')">0</button>
-      <button class="btn" (click)="aggiungiNumero('.')">,</button>
-      <button class="btn" (click)="aggiungiOperazione('/')">/</button>
-      <button class="btn uguale" (click)="calcola()">=</button>
-      <button class="btn reset" (click)="reset()">C</button>
-      <button class="btn" (click)="aggiungiIva()">+IVA</button>
-      <button class="btn" (click)="rimuoviIva()">-IVA</button>
-      <button class="btn" (click)="applicaSconto()">Sconto%</button>
-      <button class="btn" (click)="totale()">Totale</button>
+    <div class="row">
+      <div class="col">
+        <div class="contButton">
+          <div class="buttons">
+            <!-- Prima sezione di pulsanti numerici -->
+            <button class="btn" (click)="aggiungiNumero('1')">1</button>
+            <button class="btn" (click)="aggiungiNumero('2')">2</button>
+            <button class="btn" (click)="aggiungiNumero('3')">3</button>
+            <button class="btn" (click)="aggiungiOperazione('+')">+</button>
+            <button class="btn" (click)="aggiungiNumero('4')">4</button>
+            <button class="btn" (click)="aggiungiNumero('5')">5</button>
+            <button class="btn" (click)="aggiungiNumero('6')">6</button>
+            <button class="btn" (click)="aggiungiOperazione('-')">-</button>
+            <button class="btn" (click)="aggiungiNumero('7')">7</button>
+            <button class="btn" (click)="aggiungiNumero('8')">8</button>
+            <button class="btn" (click)="aggiungiNumero('9')">9</button>
+            <button class="btn" (click)="aggiungiOperazione('*')">x</button>
+            <button class="btn" (click)="aggiungiNumero('0')">0</button>
+            <button class="btn" (click)="aggiungiNumero('.')">,</button>
+            <button class="btn" (click)="aggiungiOperazione('/')">/</button>
+            <button class="btn uguale" (click)="calcola()">=</button>
+            <button class="btn reset" (click)="reset()">C</button>
+            <button class="btn" (click)="aggiungiIva()">+IVA</button>
+            <button class="btn" (click)="rimuoviIva()">-IVA</button>
+            <button class="btn" (click)="applicaSconto()">Sconto%</button>
+            <button class="btn" (click)="totale()">Totale</button>
+
+          </div>
+
+          <!-- Sezione di pulsanti di pagamento -->
+          <div class="col">
+            <div class="contButton2">
+              <button class="btn btn2">Assegno</button>
+              <button class="btn btn2">Bancomat</button>
+              <button class="btn btn2">Contanti</button>
+              <button class="btn btn2">C.Credito</button>
+              <button class="btn btn2">Ticket</button>
+              <button class="btn btn2">Bonifico</button>
+            </div>
+
+
+          </div>
+        </div>
+
+      </div>
     </div>
+
+
+
+
 
     <!-- Sezione pagamento -->
     <div class="pagamento">

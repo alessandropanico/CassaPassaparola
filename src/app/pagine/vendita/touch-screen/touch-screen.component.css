@@ -197,13 +197,12 @@
   padding: 0rem !important;
 }
 
-.titoloColonna{
+.titoloColonna {
   font-size: 12px;
 }
 
-.testoColonna{
+.testoColonna {
   font-size: 10px;
-
 }
 
 
@@ -212,21 +211,27 @@
   border: 1px solid #ccc;
   padding: 10px;
   border-radius: 5px;
-  width: 600px; /* Maggiore larghezza per una visualizzazione più ampia */
-  height: 700px; /* Altezza fissa per l'intera calcolatrice */
+  width: 600px;
+  /* Maggiore larghezza per una visualizzazione più ampia */
+  height: 700px;
+  /* Altezza fissa per l'intera calcolatrice */
   display: flex;
   flex-direction: column;
 }
 
 .display {
   margin-bottom: 10px;
-  padding: 15px; /* Maggiore padding per un'area di visualizzazione più grande */
+  padding: 15px;
+  /* Maggiore padding per un'area di visualizzazione più grande */
   border: 1px solid #000;
   border-radius: 5px;
   background-color: #f9f9f9;
-  font-size: 1.5em; /* Aumenta la dimensione del font per una visualizzazione migliore */
-  overflow-y: auto; /* Abilita lo scroll verticale */
-  max-height: 400px; /* Imposta un'altezza massima più grande per il display */
+  font-size: 1.5em;
+  /* Aumenta la dimensione del font per una visualizzazione migliore */
+  overflow-y: auto;
+  /* Abilita lo scroll verticale */
+  max-height: 400px;
+  /* Imposta un'altezza massima più grande per il display */
 }
 
 .espressione {
@@ -253,8 +258,10 @@
   border-collapse: collapse;
 }
 
-.prodotti-selezionati th, .prodotti-selezionati td {
-  padding: 10px; /* Maggiore padding per le celle della tabella */
+.prodotti-selezionati th,
+.prodotti-selezionati td {
+  padding: 10px;
+  /* Maggiore padding per le celle della tabella */
   border: 1px solid #ddd;
   text-align: center;
 }
@@ -274,12 +281,14 @@
 }
 
 .btn {
-  padding: 12px; /* Maggiore padding per i bottoni */
+  padding: 12px;
+  /* Maggiore padding per i bottoni */
   border: 1px solid #ddd;
   border-radius: 5px;
   background-color: #f0f0f0;
   cursor: pointer;
-  font-size: 1.2em; /* Maggiore dimensione del font per i bottoni */
+  font-size: 1.2em;
+  /* Maggiore dimensione del font per i bottoni */
 }
 
 .btn:active {
@@ -318,4 +327,13 @@
 .resto-display {
   margin-top: 10px;
   font-weight: bold;
+}
+
+.buttonPers {
+  background-color: red;
+  height: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

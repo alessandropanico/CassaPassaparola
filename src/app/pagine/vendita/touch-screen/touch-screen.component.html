@@ -111,6 +111,28 @@
       <div class="totale-prodotti">
         Totale Prodotti: €{{ calcolaTotaleProdotti().toFixed(2) }}
       </div>
+      <div class="tabella-prodotti">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Descrizione</th>
+              <th>Quantità</th>
+              <th>Prezzo Unitario</th>
+              <th>Totale</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let prodotto of prodottiSelezionati">
+              <td>{{ prodotto.articolo.nome }}</td>
+              <td>{{ prodotto.articolo.tipologia }}</td>
+              <td>{{ prodotto.quantita }}</td>
+              <td>€{{ prodotto.articolo.prezzo.toFixed(2) }}</td>
+              <td>€{{ (prodotto.articolo.prezzo * prodotto.quantita).toFixed(2) }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <!-- Bottoni della calcolatrice -->

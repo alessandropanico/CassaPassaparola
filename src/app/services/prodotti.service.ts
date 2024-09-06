@@ -2,16 +2,26 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+interface Articolo {
+  nome: string;
+  tipologia: string;
+  prezzo: number;
+}
+
+interface Categoria {
+  nome: string;
+  articoli: Articolo[];
+}
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProdottiService {
+  private apiUrl = 'assets/prodotti.json'; // Percorso corretto per il file JSON
 
-  private jsonUrl = 'assets/prodotti.json';
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  getProdotti(): Observable<any> {
-    return this.http.get<any>(this.jsonUrl);
+  getCategorie(): Observable<Categoria[]> {
+    return this.http.get<Categoria[]>(this.apiUrl);
   }
 }

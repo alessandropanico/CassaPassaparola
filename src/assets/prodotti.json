@@ -27,6 +27,33 @@
       ]
     },
     {
+      "nome": "Giulio",
+      "articoli": [
+        { "nome": "Lavandino in Ferro", "tipologia": "Aer4mi", "prezzo": 150 },
+        { "nome": "Lavandino in Ferro", "tipologia": "Arrr4mi", "prezzo": 200 },
+        { "nome": "Lavandino in Ferro", "tipologia": "Arvg4mi", "prezzo": 180 },
+        { "nome": "Lavandino inss Ferro", "tipologia": "Arvg4mi", "prezzo": 220 },
+        { "nome": "Lavandidno in Ferro", "tipologia": "Arvg4mi", "prezzo": 160 },
+        { "nome": "Lavandddino in Ferro", "tipologia": "Arvg4mi", "prezzo": 140 },
+        { "nome": "Lavandino in Ferro", "tipologia": "Arrr4mi", "prezzo": 240 },
+        { "nome": "Lavandino in Ferro", "tipologia": "Arg4mi", "prezzo": 170 },
+        { "nome": "Lavandino in Ferro", "tipologia": "Ar4mi", "prezzo": 180 },
+        { "nome": "Lavandino in Ferro", "tipologia": "Ar5mi", "prezzo": 190 },
+        { "nome": "Lavandino in Ferro", "tipologia": "A3rmi", "prezzo": 130 },
+        { "nome": "Lavandino in Ferro", "tipologia": "Aremi", "prezzo": 210 },
+        { "nome": "Lavandino in Ferro", "tipologia": "A324rmi", "prezzo": 160 },
+        { "nome": "Lavandino in Ferro", "tipologia": "Artmi", "prezzo": 150 },
+        { "nome": "Lavandino in Ferro", "tipologia": "Arggmi", "prezzo": 220 },
+        { "nome": "Lavandino in Ferro", "tipologia": "Arefmi", "prezzo": 140 },
+        { "nome": "Lavandino in Ferro", "tipologia": "Armvti", "prezzo": 180 },
+        { "nome": "Lavandino in Ferro", "tipologia": "Awwrmi", "prezzo": 230 },
+        { "nome": "Lavandino in Ferro", "tipologia": "Ar6mi", "prezzo": 170 },
+        { "nome": "Lavandino in Ferro", "tipologia": "Ar55mi", "prezzo": 210 },
+        { "nome": "Poppice", "tipologia": "Lavandini", "prezzo": 100 },
+        { "nome": "Specchio mimmo", "tipologia": "Specchi", "prezzo": 80 }
+      ]
+    },
+    {
       "nome": "Mobili",
       "articoli": [
         { "nome": "Sedia in legno", "tipologia": "Sedie", "prezzo": 50 },

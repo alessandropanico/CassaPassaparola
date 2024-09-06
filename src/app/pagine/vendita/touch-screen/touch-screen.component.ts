@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProdottiService } from '../../../services/prodotti.service';
 
 interface Articolo {
   nome: string;
@@ -41,16 +42,29 @@ export class TouchScreenComponent implements OnInit {
   articoloSelezionato: Articolo | null = null;
   prodottiSelezionati: ProdottoSelezionato[] = [];
 
+  categorie: Categoria[] = [];
+
+  constructor(private prodottiService: ProdottiService) {}
+
   ngOnInit(): void {
     this.setCurrentDate();
     this.setCurrentTime();
-    const categoriaPredefinita = this.categorie.find(
-      (cat) => cat.nome === 'Espositori'
-    );
-    if (categoriaPredefinita) {
-      this.selezionaCategoria(categoriaPredefinita);
-    }
+    this.prodottiService.getCategorie().subscribe({
+      next: (data) => {
+        this.categorie = data;
+        const categoriaPredefinita = this.categorie.find(
+          (cat) => cat.nome === 'Espositori'
+        );
+        if (categoriaPredefinita) {
+          this.selezionaCategoria(categoriaPredefinita);
+        }
+      },
+      error: (err) => {
+        console.error('Errore nel caricamento delle categorie:', err);
+      }
+    });
   }
+
 
   setCurrentDate(): void {
     const now = new Date();
@@ -62,7 +76,6 @@ export class TouchScreenComponent implements OnInit {
     this.currentTime = now.toTimeString().split(':').slice(0, 2).join(':');
   }
 
-  // Funzione per selezionare una categoria
   selezionaCategoria(categoria: Categoria): void {
     this.categoriaSelezionata = categoria;
     this.tipologie = Array.from(
@@ -77,12 +90,10 @@ export class TouchScreenComponent implements OnInit {
     this.tipologiaSelezionata = null;
   }
 
-  // Funzione per selezionare una tipologia
   selezionaTipologia(tipologia: string): void {
     this.tipologiaSelezionata = tipologia;
   }
 
-  // Funzione per selezionare un articolo
   selezionaArticolo(articolo: Articolo): void {
     this.articoloSelezionato = articolo;
     const prodottoEsistente = this.prodottiSelezionati.find(
@@ -117,23 +128,19 @@ export class TouchScreenComponent implements OnInit {
     this.prodottiSelezionati.splice(indice, 1);
   }
 
-
   aggiungiNumero(numero: string): void {
     if (numero === '.' && this.espressione.includes('.')) {
       return; // Evita di aggiungere più di un punto decimale in un numero
     }
 
-    // Se la calcolatrice è in uno stato "reset" (espressione vuota), inizia con '0' se l'utente preme '.'
     if (this.espressione === '' && numero === '.') {
       this.espressione = '0.';
     } else if (this.espressione.endsWith(' ') && numero === '.') {
-      // Se c'è uno spazio (indica un'operazione prima), inizia il nuovo numero con '0.'
       this.espressione += '0.';
     } else {
       this.espressione += numero;
     }
   }
-
 
   aggiungiOperazione(operazione: string): void {
     if (this.espressione) {
@@ -154,8 +161,7 @@ export class TouchScreenComponent implements OnInit {
 
   reset(): void {
     this.espressione = '';
-}
-
+  }
 
   aggiungiIva(): void {
     this.risultato += (this.risultato * this.iva) / 100;
@@ -227,86 +233,11 @@ export class TouchScreenComponent implements OnInit {
     }
   }
 
+  selezionaQuantita(quantita: number): void {
+    this.quantita = quantita;
+  }
 
-  categorie: Categoria[] = [
-    {
-      nome: 'Espositori',
-      articoli: [
-        { nome: 'Lavandino in Ferro', tipologia: 'Aer4mi', prezzo: 150 },
-        { nome: 'Lavandino in Ferro', tipologia: 'Arrr4mi', prezzo: 200 },
-        { nome: 'Lavandino in Ferro', tipologia: 'Arvg4mi', prezzo: 180 },
-        { nome: 'Lavandino inss Ferro', tipologia: 'Arvg4mi', prezzo: 220 },
-        { nome: 'Lavandidno in Ferro', tipologia: 'Arvg4mi', prezzo: 160 },
-        { nome: 'Lavandddino in Ferro', tipologia: 'Arvg4mi', prezzo: 140 },
-        { nome: 'Lavandino in Ferro', tipologia: 'Arrr4mi', prezzo: 240 },
-        { nome: 'Lavandino in Ferro', tipologia: 'Arg4mi', prezzo: 170 },
-        { nome: 'Lavandino in Ferro', tipologia: 'Ar4mi', prezzo: 180 },
-        { nome: 'Lavandino in Ferro', tipologia: 'Ar5mi', prezzo: 190 },
-        { nome: 'Lavandino in Ferro', tipologia: 'A3rmi', prezzo: 130 },
-        { nome: 'Lavandino in Ferro', tipologia: 'Aremi', prezzo: 210 },
-        { nome: 'Lavandino in Ferro', tipologia: 'A324rmi', prezzo: 160 },
-        { nome: 'Lavandino in Ferro', tipologia: 'Artmi', prezzo: 150 },
-        { nome: 'Lavandino in Ferro', tipologia: 'Arggmi', prezzo: 220 },
-        { nome: 'Lavandino in Ferro', tipologia: 'Arefmi', prezzo: 140 },
-        { nome: 'Lavandino in Ferro', tipologia: 'Armvti', prezzo: 180 },
-        { nome: 'Lavandino in Ferro', tipologia: 'Awwrmi', prezzo: 230 },
-        { nome: 'Lavandino in Ferro', tipologia: 'Ar6mi', prezzo: 170 },
-        { nome: 'Lavandino in Ferro', tipologia: 'Ar55mi', prezzo: 210 },
-        { nome: 'Poppice', tipologia: 'Lavandini', prezzo: 100 },
-        { nome: 'Specchio mimmo', tipologia: 'Specchi', prezzo: 80 },
-      ],
-    },
-    {
-      nome: 'Mobili',
-      articoli: [
-        { nome: 'Sedia in legno', tipologia: 'Sedie', prezzo: 50 },
-        { nome: 'Tavolo in vetro', tipologia: 'Tavoli', prezzo: 300 },
-        { nome: 'Armadio in noce', tipologia: 'Armadi', prezzo: 450 },
-        { nome: 'Divano in pelle', tipologia: 'Divani', prezzo: 700 },
-        { nome: 'Comodino moderno', tipologia: 'Comodini', prezzo: 120 },
-        { nome: 'Letto matrimoniale', tipologia: 'Letti', prezzo: 500 },
-        { nome: 'Scrivania in quercia', tipologia: 'Scrivanie', prezzo: 250 },
-      ],
-    },
-    {
-      nome: 'Illuminazione',
-      articoli: [
-        { nome: 'Lampadario a sospensione', tipologia: 'Lampadari', prezzo: 150 },
-        { nome: 'Lampada da tavolo', tipologia: 'Lampade', prezzo: 80 },
-        { nome: 'Applique da parete', tipologia: 'Appliques', prezzo: 90 },
-        { nome: 'Faretto LED', tipologia: 'Faretti', prezzo: 60 },
-        { nome: 'Lampada da terra', tipologia: 'Lampade', prezzo: 130 },
-      ],
-    },
-    {
-      nome: 'Decorazioni',
-      articoli: [
-        { nome: 'Quadro moderno', tipologia: 'Quadri', prezzo: 200 },
-        { nome: 'Vaso in ceramica', tipologia: 'Vasi', prezzo: 40 },
-        { nome: 'Tappeto persiano', tipologia: 'Tappeti', prezzo: 300 },
-        { nome: 'Specchio antico', tipologia: 'Specchi', prezzo: 250 },
-        { nome: 'Cuscino decorativo', tipologia: 'Cuscini', prezzo: 30 },
-      ],
-    },
-    {
-      nome: 'Elettrodomestici',
-      articoli: [
-        { nome: 'Frigorifero', tipologia: 'Frigoriferi', prezzo: 900 },
-        { nome: 'Lavatrice', tipologia: 'Lavatrici', prezzo: 400 },
-        { nome: 'Forno a microonde', tipologia: 'Microonde', prezzo: 150 },
-        { nome: 'Aspirapolvere', tipologia: 'Aspirapolveri', prezzo: 200 },
-        { nome: 'Condizionatore', tipologia: 'Climatizzatori', prezzo: 600 },
-      ],
-    },
-    {
-      nome: 'Accessori da cucina',
-      articoli: [
-        { nome: 'Pentola in acciaio', tipologia: 'Pentole', prezzo: 80 },
-        { nome: 'Set di coltelli', tipologia: 'Coltelli', prezzo: 120 },
-        { nome: 'Tagliere in legno', tipologia: 'Taglieri', prezzo: 30 },
-        { nome: 'Bollitore elettrico', tipologia: 'Elettrodomestici', prezzo: 50 },
-        { nome: 'Tostapane', tipologia: 'Elettrodomestici', prezzo: 40 },
-      ],
-    },
-  ];
+  aggiungiProdotto(articolo: Articolo): void {
+    this.selezionaArticolo(articolo);
+  }
 }

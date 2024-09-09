@@ -222,11 +222,6 @@ export class TouchScreenComponent implements OnInit {
   }
 
 
-
-
-
-
-
   calcolaEspressione(espressione: string): number {
     try {
       espressione = espressione.trim();

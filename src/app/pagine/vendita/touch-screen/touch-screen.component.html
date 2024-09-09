@@ -219,8 +219,10 @@
       </div>
 
       <div class="resto-display">
-        Resto: <span id="resto">{{ resto !== null ? resto.toFixed(2) : '0.00' }}</span>
+        <span *ngIf="messaggioErrore" class="errore">{{ messaggioErrore }}</span>
+        <span *ngIf="!messaggioErrore">Resto: <span id="resto">{{ resto !== null ? resto.toFixed(2) : '0.00' }}</span></span>
       </div>
+
 
 
 

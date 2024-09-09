@@ -43,13 +43,8 @@ export class TouchScreenComponent implements OnInit {
   prodottiSelezionati: ProdottoSelezionato[] = [];
 
   categorie: Categoria[] = [];
-  selectedListino: string = ''; // Valore selezionato
-  listinoOptions: { value: string, label: string }[] = [
-    { value: 'option1', label: 'Opzione 1' },
-    { value: 'option2', label: 'Opzione 2' },
-    { value: 'option3', label: 'Opzione 3' }
-    // Aggiungi altre opzioni se necessario
-  ];
+  messaggioErrore: string | null = null; // Aggiungi questa variabile
+
 
   constructor(private prodottiService: ProdottiService) { }
 
@@ -191,23 +186,26 @@ export class TouchScreenComponent implements OnInit {
   }
 
   calcolaResto(): void {
+    this.messaggioErrore = null; // Resetta il messaggio di errore
+
     if (this.importoPagamento !== null && this.importoPagamento >= 0) {
-      const totale = this.calcolaTotaleProdotti();
+      const totaleProdotti = this.calcolaTotaleProdotti();
+      const totale = totaleProdotti > 0 ? totaleProdotti : this.risultato;
 
       if (this.importoPagamento >= totale) {
         this.resto = this.importoPagamento - totale;
       } else {
-        this.resto = null; // Imposta a null se l'importo è insufficiente
-        console.warn('L\'importo di pagamento è insufficiente.');
+        this.resto = null;
+        this.messaggioErrore = "L'importo di pagamento è insufficiente.";
       }
     } else {
-      this.resto = null; // Imposta a null se l'importo di pagamento è invalido
-      console.error('Importo di pagamento non valido.');
+      this.resto = null;
+      this.messaggioErrore = "Importo di pagamento non valido.";
     }
 
-    // Resetta l'importo di pagamento dopo il calcolo
     this.importoPagamento = null;
   }
+
 
 
   calcolaEspressione(espressione: string): number {

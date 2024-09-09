@@ -42,7 +42,7 @@
   display: flex;
   position: absolute;
   right: 0;
-  margin-right: 27vw;
+  margin-right: 28vw;
 }
 
 .spazio {
@@ -83,10 +83,8 @@
 
 .sidebar {
   width: 20%;
-  height: 80vh;
-  /* Imposta l'altezza massima della sidebar */
-  overflow-y: auto;
-  /* Aggiungi lo scroll verticale */
+  height: 85vh;
+  overflow-y: scroll;
   padding: 0.521vw;
   background-color: #f2f2f2;
   border-right: 0.104vw solid #ddd;
@@ -120,7 +118,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow-x: scroll;
+  overflow-x: hidden;
   cursor: pointer;
 }
 
@@ -183,7 +181,7 @@
 
 /* Limita l'altezza della griglia e abilita lo scroll verticale */
 .prodotti-scroll {
-  height: 544px;
+  height: 77.5vh;
   width: 100%;
   overflow-y: scroll;
   padding: 10px;

@@ -191,12 +191,22 @@ export class TouchScreenComponent implements OnInit {
   }
 
   calcolaResto(): void {
-    if (this.importoPagamento !== null) {
-      this.resto = this.importoPagamento - this.risultato;
+    if (this.importoPagamento !== null && this.importoPagamento >= 0) {
+      const totale = this.calcolaTotaleProdotti();
+
+      if (this.importoPagamento >= totale) {
+        this.resto = this.importoPagamento - totale;
+      } else {
+        this.resto = null; // Imposta a null se l'importo è insufficiente
+        console.warn('L\'importo di pagamento è insufficiente.');
+      }
     } else {
-      this.resto = 0; // Valore predefinito se importoPagamento è null
+      this.resto = null; // Imposta a null se l'importo di pagamento è invalido
+      console.error('Importo di pagamento non valido.');
     }
-    this.importoPagamento=null;
+
+    // Resetta l'importo di pagamento dopo il calcolo
+    this.importoPagamento = null;
   }
 
 

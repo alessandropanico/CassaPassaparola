@@ -164,6 +164,7 @@ export class TouchScreenComponent implements OnInit {
 
   reset(): void {
     this.espressione = '';
+    this.risultato=0;
   }
 
   aggiungiIva(): void {

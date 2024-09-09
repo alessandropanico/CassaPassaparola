@@ -188,10 +188,13 @@
 
 
     <!-- Sezione pagamento -->
+     <div class="contPagamento">
     <div class="pagamento">
       <label for="pagaContanti">Contanti: </label>
       <input type="number" id="pagaContanti" placeholder="Inserisci importo" [(ngModel)]="importoPagamento" />
-      <button class="btn" (click)="calcolaResto()">Calcola Resto</button>
+    </div>
+
+      <button class="btn Btnpagamento" (click)="calcolaResto()">Calcola Resto</button>
     </div>
 
     <!-- Display del resto -->

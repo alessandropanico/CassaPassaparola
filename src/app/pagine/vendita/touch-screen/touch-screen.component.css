@@ -71,6 +71,16 @@
   max-width: 100%;
 }
 
+.row {
+  /* flex-shrink: 0; */
+  --bs-gutter-x: 0;
+  width: 100%;
+  max-width: 100%;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+  margin-top: var(--bs-gutter-y);
+}
+
 .sidebar {
   width: 20%;
   height: 80vh;

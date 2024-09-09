@@ -62,7 +62,7 @@
               (click)="selezionaArticolo(articolo)">
               <div class="articolo-card p-3 border">
                 <h6>{{ articolo.nome }}</h6>
-                <p>€{{ articolo.prezzo }}</p>
+                €{{ articolo.prezzo }}
               </div>
             </div>
           </div>
@@ -70,7 +70,7 @@
 
         <!-- Se non è selezionata alcuna tipologia, mostra tutti gli articoli di tutte le tipologie -->
         <ng-template #mostraTuttiArticoli>
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 rowPers">
             <ng-container *ngFor="let tipologia of tipologie">
               <div class="col" *ngFor="let articolo of articoliFiltrati[tipologia] || []"
                 (click)="selezionaArticolo(articolo)">
@@ -93,119 +93,113 @@
   </div>
 
 
+
+
   <!-- Sezione della Calcolatrice -->
-   <section class="contCalcolatrice">
-  <div class="calcolatrice-container">
-    <!-- Display principale della calcolatrice -->
-    <div class="display">
-      <!-- Visualizzazione dell'espressione e risultato della calcolatrice -->
-      <div class="display-calcolatrice">
-        <div class="espressione">{{ espressione }}</div>
-        <div class="risultato">€{{ risultato.toFixed(2) }}</div>
-      </div>
-      <!-- Visualizzazione del totale dei prodotti -->
-      <div class="totale-prodotti">
-        Totale Prodotti: €{{ calcolaTotaleProdotti().toFixed(2) }}
-      </div>
-      <div class="tabella-prodotti">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th class="titoloColonna">Nome</th>
-              <th class="titoloColonna">Descrizione</th>
-              <th class="titoloColonna">Quantità</th>
-              <th class="titoloColonna">Prezzo Unitario</th>
-              <th class="titoloColonna">Totale</th>
-              <th class="titoloColonna">Azione</th> <!-- Nuova colonna per il pulsante di rimozione -->
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let prodotto of prodottiSelezionati; let i = index">
-              <td class="testoColonna">{{ prodotto.articolo.nome }}</td>
-              <td class="testoColonna">{{ prodotto.articolo.tipologia }}</td>
-              <td class="testoColonna">{{ prodotto.quantita }}</td>
-              <td class="testoColonna">€{{ prodotto.articolo.prezzo.toFixed(2) }}</td>
-              <td class="testoColonna">€{{ (prodotto.articolo.prezzo * prodotto.quantita).toFixed(2) }}</td>
-              <td class="testoColonna">
-                <button class="btn btn-danger buttonPers" (click)="rimuoviProdotto(i)">Rimuovi</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-    </div>
-
-    <!-- Bottoni della calcolatrice -->
-    <div class="row">
-      <div class="col">
-        <div class="contButton">
-          <div class="buttons">
-            <!-- Prima sezione di pulsanti numerici -->
-            <button class="btn" (click)="aggiungiNumero('1')">1</button>
-            <button class="btn" (click)="aggiungiNumero('2')">2</button>
-            <button class="btn" (click)="aggiungiNumero('3')">3</button>
-            <button class="btn" (click)="aggiungiOperazione('+')">+</button>
-            <button class="btn" (click)="aggiungiNumero('4')">4</button>
-            <button class="btn" (click)="aggiungiNumero('5')">5</button>
-            <button class="btn" (click)="aggiungiNumero('6')">6</button>
-            <button class="btn" (click)="aggiungiOperazione('-')">-</button>
-            <button class="btn" (click)="aggiungiNumero('7')">7</button>
-            <button class="btn" (click)="aggiungiNumero('8')">8</button>
-            <button class="btn" (click)="aggiungiNumero('9')">9</button>
-            <button class="btn" (click)="aggiungiOperazione('*')">x</button>
-            <button class="btn" (click)="aggiungiNumero('0')">0</button>
-            <button class="btn" (click)="aggiungiNumero('.')">,</button>
-            <button class="btn" (click)="aggiungiOperazione('/')">/</button>
-            <button class="btn uguale" (click)="calcola()">=</button>
-            <button class="btn reset" (click)="reset()">C</button>
-            <button class="btn" (click)="aggiungiIva()">+IVA</button>
-            <button class="btn" (click)="rimuoviIva()">-IVA</button>
-            <button class="btn" (click)="applicaSconto()">Sconto%</button>
-            <button class="btn" (click)="totale()">Totale</button>
-
-          </div>
-
-          <!-- Sezione di pulsanti di pagamento -->
-          <div class="col">
-            <div class="contButton2">
-              <button class="btn btn2">Assegno</button>
-              <button class="btn btn2">Bancomat</button>
-              <button class="btn btn2">Contanti</button>
-              <button class="btn btn2">C.Credito</button>
-              <button class="btn btn2">Ticket</button>
-              <button class="btn btn2">Bonifico</button>
-            </div>
-
-
-          </div>
+  <section class="contCalcolatrice">
+    <div class="calcolatrice-container">
+      <!-- Display principale della calcolatrice -->
+      <div class="display">
+        <!-- Visualizzazione dell'espressione e risultato della calcolatrice -->
+        <div class="display-calcolatrice">
+          <div class="espressione">{{ espressione }}</div>
+          <div class="risultato">€{{ risultato.toFixed(2) }}</div>
+        </div>
+        <!-- Visualizzazione del totale dei prodotti -->
+        <div class="totale-prodotti">
+          Totale Prodotti: €{{ calcolaTotaleProdotti().toFixed(2) }}
+        </div>
+        <div class="tabella-prodotti">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th class="titoloColonna">Nome</th>
+                <th class="titoloColonna">Descrizione</th>
+                <th class="titoloColonna">Quantità</th>
+                <th class="titoloColonna">Prezzo Unitario</th>
+                <th class="titoloColonna">Totale</th>
+                <th class="titoloColonna">Azione</th> <!-- Nuova colonna per il pulsante di rimozione -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let prodotto of prodottiSelezionati; let i = index">
+                <td class="testoColonna">{{ prodotto.articolo.nome }}</td>
+                <td class="testoColonna">{{ prodotto.articolo.tipologia }}</td>
+                <td class="testoColonna">{{ prodotto.quantita }}</td>
+                <td class="testoColonna">€{{ prodotto.articolo.prezzo.toFixed(2) }}</td>
+                <td class="testoColonna">€{{ (prodotto.articolo.prezzo * prodotto.quantita).toFixed(2) }}</td>
+                <td class="testoColonna">
+                  <button class="btn btn-danger buttonPers" (click)="rimuoviProdotto(i)">Rimuovi</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
       </div>
-    </div>
 
+      <!-- Bottoni della calcolatrice -->
+      <div class="row">
+        <div class="col">
+          <div class="contButton">
+            <div class="buttons">
+              <!-- Prima sezione di pulsanti numerici -->
+              <button class="btn" (click)="aggiungiNumero('1')">1</button>
+              <button class="btn" (click)="aggiungiNumero('2')">2</button>
+              <button class="btn" (click)="aggiungiNumero('3')">3</button>
+              <button class="btn" (click)="aggiungiOperazione('+')">+</button>
+              <button class="btn" (click)="aggiungiNumero('4')">4</button>
+              <button class="btn" (click)="aggiungiNumero('5')">5</button>
+              <button class="btn" (click)="aggiungiNumero('6')">6</button>
+              <button class="btn" (click)="aggiungiOperazione('-')">-</button>
+              <button class="btn" (click)="aggiungiNumero('7')">7</button>
+              <button class="btn" (click)="aggiungiNumero('8')">8</button>
+              <button class="btn" (click)="aggiungiNumero('9')">9</button>
+              <button class="btn" (click)="aggiungiOperazione('*')">x</button>
+              <button class="btn" (click)="aggiungiNumero('0')">0</button>
+              <button class="btn" (click)="aggiungiNumero('.')">,</button>
+              <button class="btn" (click)="aggiungiOperazione('/')">/</button>
+              <button class="btn uguale" (click)="calcola()">=</button>
+              <button class="btn reset" (click)="reset()">C</button>
+              <button class="btn" (click)="aggiungiIva()">+IVA</button>
+              <button class="btn" (click)="rimuoviIva()">-IVA</button>
+              <button class="btn" (click)="applicaSconto()">Sconto%</button>
+              <button class="btn" (click)="totale()">Totale</button>
 
+            </div>
 
+            <!-- Sezione di pulsanti di pagamento -->
+            <div class="col">
+              <div class="contButton2">
+                <button class="btn btn2">Assegno</button>
+                <button class="btn btn2">Bancomat</button>
+                <button class="btn btn2">Contanti</button>
+                <button class="btn btn2">C.Credito</button>
+                <button class="btn btn2">Ticket</button>
+                <button class="btn btn2">Bonifico</button>
+              </div>
 
-
-    <!-- Sezione pagamento -->
-    <div class="contPagamento">
-      <div class="pagamento">
-        <label for="pagaContanti">Contanti: </label>
-        <input type="number" id="pagaContanti" placeholder="Inserisci importo" [(ngModel)]="importoPagamento" />
+            </div>
+          </div>
+        </div>
       </div>
 
-      <button class="btn Btnpagamento" (click)="calcolaResto()">Calcola Resto</button>
+      <!-- Sezione pagamento -->
+      <div class="contPagamento">
+        <div class="pagamento">
+          <label for="pagaContanti">Contanti: </label>
+          <input type="number" id="pagaContanti" placeholder="Inserisci importo" [(ngModel)]="importoPagamento" />
+        </div>
+
+        <button class="btn Btnpagamento" (click)="calcolaResto()">Calcola Resto</button>
+      </div>
+
+      <!-- Display del resto -->
+      <div class="resto-display">
+        Resto: <span id="resto">{{ resto.toFixed(2) || '0.00' }}</span>
+      </div>
     </div>
-
-    <!-- Display del resto -->
-    <div class="resto-display">
-      Resto: <span id="resto">{{ resto.toFixed(2) || '0.00' }}</span>
-    </div>
-  </div>
-</section>
-
-
+  </section>
 
 
 

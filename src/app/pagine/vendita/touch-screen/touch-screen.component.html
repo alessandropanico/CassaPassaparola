@@ -129,7 +129,8 @@
                 <td class="testoColonna">€{{ prodotto.articolo.prezzo.toFixed(2) }}</td>
                 <td class="testoColonna">€{{ (prodotto.articolo.prezzo * prodotto.quantita).toFixed(2) }}</td>
                 <td class="testoColonna">
-                  <button class="btn btn-danger buttonPers" (click)="rimuoviProdotto(i)"><i class="fa-solid fa-trash"></i></button>
+                  <button class="btn btn-danger buttonPers" (click)="rimuoviProdotto(i)"><i
+                      class="fa-solid fa-trash"></i></button>
                 </td>
               </tr>
             </tbody>
@@ -212,14 +213,19 @@
       <div class="contPagamento">
         <div class="pagamento">
           <label for="pagaContanti">Contanti: </label>
+          <!-- Campo per inserire l'importo di pagamento -->
           <input type="number" id="pagaContanti" placeholder="Inserisci importo" [(ngModel)]="importoPagamento" />
         </div>
 
+        <!-- Pulsante per calcolare il resto -->
         <button class="btn Btnpagamento" (click)="calcolaResto()">Calcola Resto</button>
       </div>
 
+      <!-- Sezione che mostra il resto -->
       <div class="resto-display">
+        <!-- Messaggio di errore in caso di input non valido -->
         <span *ngIf="messaggioErrore" class="errore">{{ messaggioErrore }}</span>
+        <!-- Se non ci sono errori, mostra il resto -->
         <span *ngIf="!messaggioErrore">Resto: <span id="resto">{{ resto !== null ? resto.toFixed(2) : '0.00' }}</span></span>
       </div>
 

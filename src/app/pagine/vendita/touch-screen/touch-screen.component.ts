@@ -190,8 +190,21 @@ export class TouchScreenComponent implements OnInit {
 
     if (this.importoPagamento !== null && this.importoPagamento >= 0) {
       const totaleProdotti = this.calcolaTotaleProdotti();
-      const totale = totaleProdotti > 0 ? totaleProdotti : this.risultato;
+      let totale = totaleProdotti;
 
+      // Se esiste un'espressione valida, usa il valore come totale
+      if (this.espressione && this.espressione.trim() !== '') {
+        const valoreInserito = parseFloat(this.espressione);
+
+        if (isNaN(valoreInserito)) {
+          this.messaggioErrore = "L'espressione inserita non è un numero valido.";
+          return;
+        } else {
+          totale = valoreInserito;
+        }
+      }
+
+      // Calcolo del resto
       if (this.importoPagamento >= totale) {
         this.resto = this.importoPagamento - totale;
       } else {
@@ -203,28 +216,43 @@ export class TouchScreenComponent implements OnInit {
       this.messaggioErrore = "Importo di pagamento non valido.";
     }
 
+    // Resetta l'importo di pagamento dopo il calcolo
     this.importoPagamento = null;
+    this.espressione='';
   }
+
+
+
+
 
 
 
   calcolaEspressione(espressione: string): number {
     try {
       espressione = espressione.trim();
+
+      if (!espressione) {
+        throw new Error('Espressione vuota');
+      }
+
       const parti = espressione.split(' ').filter((p) => p !== '');
 
       if (parti.length < 3) {
-        throw new Error('Espressione non valida');
+        throw new Error('Espressione non valida, mancano elementi');
       }
 
       let risultato: number = parseFloat(parti[0]);
+
+      if (isNaN(risultato)) {
+        throw new Error('Il primo numero è non valido');
+      }
 
       for (let i = 1; i < parti.length; i += 2) {
         const operatore = parti[i];
         const valore = parseFloat(parti[i + 1]);
 
         if (isNaN(valore)) {
-          throw new Error('Valore non valido');
+          throw new Error(`Valore non valido per l'operatore ${operatore}`);
         }
 
         switch (operatore) {
@@ -244,16 +272,17 @@ export class TouchScreenComponent implements OnInit {
             risultato /= valore;
             break;
           default:
-            throw new Error('Operatore non valido');
+            throw new Error(`Operatore non valido: ${operatore}`);
         }
       }
 
       return risultato;
     } catch (error) {
       console.error("Errore nel calcolo dell'espressione:", error);
-      return 0;
+      throw error; // Continua a lanciare l'errore affinché possa essere gestito nella chiamata superiore
     }
   }
+
 
   selezionaQuantita(quantita: number): void {
     this.quantita = quantita;

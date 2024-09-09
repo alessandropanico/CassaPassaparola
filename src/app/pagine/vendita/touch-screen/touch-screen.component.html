@@ -104,6 +104,17 @@
         <div class="display-calcolatrice">
           <div class="espressione">{{ espressione }}</div>
           <div class="risultato">€{{ risultato.toFixed(2) }}</div>
+
+          <!-- Sezione che mostra il resto -->
+          <div class="resto-display">
+            <!-- Messaggio di errore in caso di input non valido -->
+            <span *ngIf="messaggioErrore" class="errore">{{ messaggioErrore }}</span>
+            <!-- Se non ci sono errori, mostra il resto -->
+            <span *ngIf="!messaggioErrore">Resto: <span id="resto">{{ resto !== null ? resto.toFixed(2) : '0.00'
+                }}</span></span>
+          </div>
+
+
         </div>
         <!-- Visualizzazione del totale dei prodotti -->
         <div class="totale-prodotti">
@@ -159,10 +170,6 @@
           </div>
         </div>
       </div>
-
-
-
-
 
       <div class="row">
         <div class="col">
@@ -221,13 +228,7 @@
         <button class="btn Btnpagamento" (click)="calcolaResto()">Calcola Resto</button>
       </div>
 
-      <!-- Sezione che mostra il resto -->
-      <div class="resto-display">
-        <!-- Messaggio di errore in caso di input non valido -->
-        <span *ngIf="messaggioErrore" class="errore">{{ messaggioErrore }}</span>
-        <!-- Se non ci sono errori, mostra il resto -->
-        <span *ngIf="!messaggioErrore">Resto: <span id="resto">{{ resto !== null ? resto.toFixed(2) : '0.00' }}</span></span>
-      </div>
+
 
 
 

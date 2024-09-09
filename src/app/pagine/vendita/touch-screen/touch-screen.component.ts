@@ -128,7 +128,7 @@ export class TouchScreenComponent implements OnInit {
 
   rimuoviProdotto(indice: number): void {
     this.prodottiSelezionati.splice(indice, 1);
-    this.resto=null;
+    this.resto = null;
   }
 
   aggiungiNumero(numero: string): void {
@@ -218,7 +218,7 @@ export class TouchScreenComponent implements OnInit {
 
     // Resetta l'importo di pagamento dopo il calcolo
     this.importoPagamento = null;
-    this.espressione='';
+    this.espressione = '';
   }
 
 

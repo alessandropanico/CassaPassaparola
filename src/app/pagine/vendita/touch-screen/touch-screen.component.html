@@ -164,7 +164,7 @@
               <button class="btn" (click)="aggiungiIva()">+IVA</button>
               <button class="btn" (click)="rimuoviIva()">-IVA</button>
               <button class="btn" (click)="applicaSconto()">Sconto%</button>
-              <button class="btn" (click)="totale()">Totale</button>
+              <!-- <button class="btn" (click)="totale()">Totale</button> -->
 
             </div>
 
@@ -196,9 +196,17 @@
 
       <!-- Display del resto -->
       <div class="resto-display">
-        Resto: <span id="resto">{{ resto.toFixed(2) || '0.00' }}</span>
+        Resto: <span id="resto">{{ resto !== null ? resto.toFixed(2) : '0.00' }}</span>
       </div>
+
+
+
+
+
+
     </div>
+
+
   </section>
 
 

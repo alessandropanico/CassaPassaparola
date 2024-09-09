@@ -34,8 +34,8 @@ export class TouchScreenComponent implements OnInit {
   risultato: number = 0;
   iva: number = 22; // IVA al 22%
   sconto: number = 0;
-  importoPagamento: number = 0;
-  resto: number = 0;
+  importoPagamento: number | null = null; // Imposta inizialmente a null
+  resto: number | null = null; // Imposta inizialmente a null;
 
   numero: number = 1;
   quantita: number = 1; // Quantità predefinita
@@ -126,6 +126,7 @@ export class TouchScreenComponent implements OnInit {
 
   rimuoviProdotto(indice: number): void {
     this.prodottiSelezionati.splice(indice, 1);
+    this.resto=null;
   }
 
   aggiungiNumero(numero: string): void {
@@ -183,8 +184,14 @@ export class TouchScreenComponent implements OnInit {
   }
 
   calcolaResto(): void {
-    this.resto = this.importoPagamento - this.risultato;
+    if (this.importoPagamento !== null) {
+      this.resto = this.importoPagamento - this.risultato;
+    } else {
+      this.resto = 0; // Valore predefinito se importoPagamento è null
+    }
+    this.importoPagamento=null;
   }
+
 
   calcolaEspressione(espressione: string): number {
     try {

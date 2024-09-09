@@ -235,6 +235,7 @@
   height: auto;
   display: flex;
   flex-direction: column;
+  position: relative;
   z-index: 9999;
   margin-top: -8.2vh;
   background-color: rgb(161, 161, 161);

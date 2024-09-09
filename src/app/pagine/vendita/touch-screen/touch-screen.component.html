@@ -94,6 +94,7 @@
 
 
   <!-- Sezione della Calcolatrice -->
+   <section class="contCalcolatrice">
   <div class="calcolatrice-container">
     <!-- Display principale della calcolatrice -->
     <div class="display">
@@ -188,11 +189,11 @@
 
 
     <!-- Sezione pagamento -->
-     <div class="contPagamento">
-    <div class="pagamento">
-      <label for="pagaContanti">Contanti: </label>
-      <input type="number" id="pagaContanti" placeholder="Inserisci importo" [(ngModel)]="importoPagamento" />
-    </div>
+    <div class="contPagamento">
+      <div class="pagamento">
+        <label for="pagaContanti">Contanti: </label>
+        <input type="number" id="pagaContanti" placeholder="Inserisci importo" [(ngModel)]="importoPagamento" />
+      </div>
 
       <button class="btn Btnpagamento" (click)="calcolaResto()">Calcola Resto</button>
     </div>
@@ -202,7 +203,7 @@
       Resto: <span id="resto">{{ resto.toFixed(2) || '0.00' }}</span>
     </div>
   </div>
-
+</section>
 
 
 

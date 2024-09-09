@@ -43,6 +43,13 @@ export class TouchScreenComponent implements OnInit {
   prodottiSelezionati: ProdottoSelezionato[] = [];
 
   categorie: Categoria[] = [];
+  selectedListino: string = ''; // Valore selezionato
+  listinoOptions: { value: string, label: string }[] = [
+    { value: 'option1', label: 'Opzione 1' },
+    { value: 'option2', label: 'Opzione 2' },
+    { value: 'option3', label: 'Opzione 3' }
+    // Aggiungi altre opzioni se necessario
+  ];
 
   constructor(private prodottiService: ProdottiService) { }
 

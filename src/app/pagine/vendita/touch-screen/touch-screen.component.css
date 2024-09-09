@@ -68,6 +68,7 @@
 
 .layout-container {
   display: flex;
+  max-width: 100%;
 }
 
 .sidebar {
@@ -109,7 +110,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow-x: auto;
+  overflow-x: scroll;
   cursor: pointer;
 }
 
@@ -122,8 +123,10 @@
 
 .header-cell {
   flex: 1 0 auto;
-  /* Consente alle celle di mantenere la loro larghezza e di scorrere orizzontalmente */
-  text-align: center;
+  max-width: 200px; /* Imposta una larghezza massima */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 0.471vw;
   border: solid 0.052vw gray;
   cursor: pointer;
@@ -227,6 +230,12 @@
 
 
 /*----------------------*/
+
+.contCalcolatrice{
+  position: relative;
+}
+
+
 .calcolatrice-container {
   border: 1px solid #ccc;
   padding: 10px;

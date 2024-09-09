@@ -205,12 +205,29 @@
   padding: 0rem !important;
 }
 
+tbody{
+  border: solid 1px black;
+
+}
+
+
+
+td{
+  border: solid 1px black;
+
+}
+
 .titoloColonna {
   font-size: 12px;
+  text-align: center;
+  border: solid 1px black;
+
 }
 
 .testoColonna {
   font-size: 10px;
+  text-align: center;
+  padding: 0.1vw;
 }
 
 .contenitoreBottoni {
@@ -250,7 +267,7 @@
   border: 1px solid #ccc;
   padding: 10px;
   border-radius: 5px;
-  width: 400px;
+  width: 420px;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -262,26 +279,21 @@
 
 .display {
   margin-bottom: 10px;
-  padding: 15px;
-  /* Maggiore padding per un'area di visualizzazione più grande */
+  padding: 5px;
   border: 1px solid #000;
   border-radius: 5px;
   background-color: #f9f9f9;
   font-size: 1.5em;
-  /* Aumenta la dimensione del font per una visualizzazione migliore */
   overflow-y: auto;
-  /* Abilita lo scroll verticale */
   height: 250px;
-  /* Imposta un'altezza massima più grande per il display */
 }
 
 .espressione {
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 
 .totale-prodotti {
-  margin-top: 10px;
-  font-weight: bold;
+  font-weight: bolder;
 }
 
 .prodotti-selezionati {
@@ -397,9 +409,14 @@
 
 .buttonPers {
   background-color: red;
-  height: 20px;
+  height: 10px;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 0.3vw;
+}
+
+.fa-trash{
+  font-size: 1vw;
 }

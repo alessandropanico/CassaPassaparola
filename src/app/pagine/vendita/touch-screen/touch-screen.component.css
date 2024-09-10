@@ -125,7 +125,8 @@
 
 .header-cell {
   flex: 1 0 auto;
-  max-width: 200px; /* Imposta una larghezza massima */
+  max-width: 200px;
+  /* Imposta una larghezza massima */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -197,12 +198,12 @@
   padding: 0rem !important;
 }
 
-tbody{
+tbody {
   border: solid 1px black;
 
 }
 
-td{
+td {
   border: solid 1px black;
 
 }
@@ -245,11 +246,11 @@ td{
   margin-bottom: 3px;
 }
 
-.form-group{
+.form-group {
   margin-bottom: 5px;
 }
 
-.mySelect{
+.mySelect {
   height: 3.5vh;
   width: 7vw;
   display: flex;
@@ -277,7 +278,7 @@ td{
 
 /*----------------------*/
 
-.contCalcolatrice{
+.contCalcolatrice {
   position: relative;
 }
 
@@ -394,7 +395,7 @@ td{
   background-color: #c82333;
 }
 
-.contPagamento{
+.contPagamento {
   display: flex;
 }
 
@@ -409,7 +410,7 @@ td{
 }
 
 
-.Btnpagamento{
+.Btnpagamento {
   height: 50px !important;
   width: auto !important;
   display: flex;
@@ -438,7 +439,7 @@ td{
   margin-left: 0.3vw;
 }
 
-.fa-trash{
+.fa-trash {
   font-size: 1vw;
 }
 

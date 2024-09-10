@@ -188,7 +188,7 @@ export class TouchScreenComponent implements OnInit {
 
   reset(): void {
     this.espressione = '';
-    this.risultato=0;
+    this.risultato = 0;
   }
 
   aggiungiIva(): void {
@@ -211,41 +211,45 @@ export class TouchScreenComponent implements OnInit {
   }
 
   calcolaResto(): void {
-    this.messaggioErrore = null; // Resetta il messaggio di errore
+    this.messaggioErrore = null; // Resetta sempre il messaggio di errore all'inizio
 
+    // Controlla se l'importo inserito è valido
     if (this.importoPagamento !== null && this.importoPagamento >= 0) {
       const totaleProdotti = this.calcolaTotaleProdotti();
       let totale = totaleProdotti;
 
-      // Se esiste un'espressione valida, usa il valore come totale
+      // Se c'è un'espressione inserita, la usa come totale
       if (this.espressione && this.espressione.trim() !== '') {
         const valoreInserito = parseFloat(this.espressione);
 
         if (isNaN(valoreInserito)) {
           this.messaggioErrore = "L'espressione inserita non è un numero valido.";
-          return;
+          return;  // Esce dalla funzione se c'è un errore
         } else {
           totale = valoreInserito;
         }
       }
 
-      // Calcolo del resto
+      // Calcolo del resto se l'importo pagamento è sufficiente
       if (this.importoPagamento >= totale) {
         this.resto = this.importoPagamento - totale;
       } else {
         this.resto = null;
         this.messaggioErrore = "L'importo di pagamento è insufficiente.";
+        return;  // Esce dalla funzione se c'è un errore
       }
     } else {
       this.resto = null;
       this.messaggioErrore = "Importo di pagamento non valido.";
+      return;  // Esce dalla funzione se c'è un errore
     }
 
-    // Resetta l'importo di pagamento dopo il calcolo
+    // Se tutto va bene, pulisci i campi e resetta i valori
     this.importoPagamento = null;
     this.espressione = '';
     this.clearInput();
   }
+
 
 
   calcolaEspressione(espressione: string): number {

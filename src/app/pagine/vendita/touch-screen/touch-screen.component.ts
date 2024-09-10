@@ -247,8 +247,10 @@ export class TouchScreenComponent implements OnInit {
     // Se tutto va bene, pulisci i campi e resetta i valori
     this.importoPagamento = null;
     this.espressione = '';
-    this.clearInput();
+    this.prodottiSelezionati = []; // Svuota i prodotti selezionati (il "carrello")
+    this.clearInput();  // Pulisce il campo di input per l'importo pagamento
   }
+
 
 
 

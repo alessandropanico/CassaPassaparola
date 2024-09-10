@@ -242,6 +242,10 @@
 
 <!-- Tastiera Virtuale -->
 <div class="keyboard" *ngIf="showingKeyboard">
+  <div>
+    <input class="keyboard-input" [(ngModel)]="importoPagamentoStr" readonly>
+  </div>
+
   <div class="keyboard-row">
     <button (click)="addCharacter('1')">1</button>
     <button (click)="addCharacter('2')">2</button>
@@ -264,6 +268,7 @@
     <button (click)="confirmInput()">OK</button>
   </div>
 </div>
+
 
 
 

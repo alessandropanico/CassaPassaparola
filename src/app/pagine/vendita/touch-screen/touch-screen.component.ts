@@ -244,6 +244,7 @@ export class TouchScreenComponent implements OnInit {
     // Resetta l'importo di pagamento dopo il calcolo
     this.importoPagamento = null;
     this.espressione = '';
+    this.clearInput();
   }
 
 
@@ -312,7 +313,8 @@ export class TouchScreenComponent implements OnInit {
     this.selezionaArticolo(articolo);
   }
 
-  clearInput(){
-    console.log("Pulisco")
+  clearInput(): void {
+    this.importoPagamentoStr = ''; // Pulire il campo di input
   }
+
 }

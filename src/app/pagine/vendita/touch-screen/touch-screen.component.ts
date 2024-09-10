@@ -44,6 +44,30 @@ export class TouchScreenComponent implements OnInit {
 
   categorie: Categoria[] = [];
   messaggioErrore: string | null = null; // Aggiungi questa variabile
+  importoPagamentoStr: string = '';
+  showingKeyboard: boolean = false;
+
+  showKeyboard(): void {
+    this.showingKeyboard = true;
+  }
+
+  hideKeyboard(): void {
+    this.showingKeyboard = false;
+  }
+
+  addCharacter(char: string): void {
+    if (char === 'C') {
+      this.importoPagamentoStr = '';
+    } else {
+      this.importoPagamentoStr += char;
+    }
+  }
+
+  confirmInput(): void {
+    this.hideKeyboard();
+    // Converti l'importo inserito in numero e assegnalo a importoPagamento
+    this.importoPagamento = parseFloat(this.importoPagamentoStr) || null;
+  }
 
 
   constructor(private prodottiService: ProdottiService) { }
@@ -286,5 +310,9 @@ export class TouchScreenComponent implements OnInit {
 
   aggiungiProdotto(articolo: Articolo): void {
     this.selezionaArticolo(articolo);
+  }
+
+  clearInput(){
+    console.log("Pulisco")
   }
 }

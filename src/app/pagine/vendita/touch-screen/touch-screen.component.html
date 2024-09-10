@@ -217,19 +217,55 @@
       </div>
 
       <!-- Sezione pagamento -->
-      <div class="contPagamento">
-        <div class="pagamento">
-          <label for="pagaContanti">Contanti: </label>
-          <!-- Campo per inserire l'importo di pagamento -->
-          <input type="number" id="pagaContanti" placeholder="Inserisci importo" [(ngModel)]="importoPagamento" />
-        </div>
+   <!-- Campo per inserire l'importo di pagamento -->
+<!-- Campo per inserire l'importo di pagamento -->
+<div class="contPagamento">
+  <div class="pagamento">
+    <label for="pagaContanti">Contanti: </label>
+    <input
+      type="text"
+      id="pagaContanti"
+      placeholder="Inserisci importo"
+      [(ngModel)]="importoPagamentoStr"
+      (focus)="showKeyboard()"
+      readonly
+    />
+  </div>
 
-        <!-- Pulsante per calcolare il resto -->
-        <button class="btn Btnpagamento" (click)="calcolaResto()">Calcola Resto</button>
-      </div>
+  <!-- Pulsante per calcolare il resto -->
+  <button class="btn Btnpagamento" (click)="calcolaResto()">Calcola Resto</button>
+</div>
 
 
-      
+
+
+
+<!-- Tastiera Virtuale -->
+<div class="keyboard" *ngIf="showingKeyboard">
+  <div class="keyboard-row">
+    <button (click)="addCharacter('1')">1</button>
+    <button (click)="addCharacter('2')">2</button>
+    <button (click)="addCharacter('3')">3</button>
+    <button (click)="clearInput()">C</button>
+  </div>
+  <div class="keyboard-row">
+    <button (click)="addCharacter('4')">4</button>
+    <button (click)="addCharacter('5')">5</button>
+    <button (click)="addCharacter('6')">6</button>
+    <button (click)="addCharacter('.')">.</button>
+  </div>
+  <div class="keyboard-row">
+    <button (click)="addCharacter('7')">7</button>
+    <button (click)="addCharacter('8')">8</button>
+    <button (click)="addCharacter('9')">9</button>
+    <button (click)="addCharacter('0')">0</button>
+  </div>
+  <div class="keyboard-row">
+    <button (click)="confirmInput()">OK</button>
+  </div>
+</div>
+
+
 
 
 

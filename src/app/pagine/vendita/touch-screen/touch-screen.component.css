@@ -441,3 +441,40 @@ td{
 .fa-trash{
   font-size: 1vw;
 }
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  z-index: 1000;
+}
+
+.keyboard-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.keyboard button {
+  flex: 1;
+  padding: 10px;
+  margin: 2px;
+  border: 1px solid #ccc;
+  background: #f1f1f1;
+  cursor: pointer;
+}
+
+
+.keyboard button:hover {
+  background: #e1e1e1;
+}
+
+.keyboard button:active {
+  background: #d1d1d1;
+}

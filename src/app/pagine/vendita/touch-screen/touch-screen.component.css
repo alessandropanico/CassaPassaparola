@@ -75,6 +75,12 @@
   margin-top: var(--bs-gutter-y);
 }
 
+.rowPers{
+  margin-top: 10px;
+}
+
+
+
 .sidebar {
   width: 20%;
   height: 85vh;
@@ -242,16 +248,17 @@ td {
   align-items: center;
   display: flex;
   justify-content: center;
-  height: 47px !important;
+  height: 37px !important;
   margin-bottom: 3px;
 }
 
 .form-group {
   margin-bottom: 5px;
+  margin-top: -4px;
 }
 
 .mySelect {
-  height: 3.5vh;
+  height: 2.7vh;
   width: 7vw;
   display: flex;
   align-items: center;
@@ -264,7 +271,7 @@ td {
 
 .myForm {
   width: 7vw;
-  height: 3.5vh;
+  height: 2.7vh;
   border: solid 1px black;
   border-radius: 5px;
   font-size: 14px;
@@ -366,7 +373,7 @@ td {
   font-size: 1.2em;
   box-sizing: border-box;
   text-align: center;
-  height: 50px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -437,6 +444,13 @@ td {
   justify-content: center;
   align-items: center;
   margin-left: 0.3vw;
+}
+
+.buttonPers2{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .fa-trash {
